@@ -1,3 +1,6 @@
+/* COLORES */
+/* Verde: #309971; */
+
 /* FUENTES */
 
 @font-face { font-family: Black; src: url(../fonts/Raleway-Black.ttf); }
@@ -9,15 +12,34 @@
 
 body {
 	font-family: Regular;
-	overflow: hidden;
+	overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5 {
+	font-family: Bold;
+}
+
+main {
+	padding-top: 60px;
+}
+
+footer {
+	color: black;
+	background-color: #2d2d2d;
+	padding: 15px;
+}
+
+footer > p {
+	margin: 0px;
 }
 
 /* CLASES */
+
 .blanco {
 	color: #ffffff;
 }
 
-.loginBg {
+.imageBg {
 	background-image: url("../img/petface_bg.jpg");
 	background-attachment: fixed;
 	background-position: center center;
@@ -36,6 +58,26 @@ body {
 	border-radius: 5px;
 }
 
+.navbar {
+	background-color: #309971;
+	margin: 0px;
+	border: none;
+	border-radius: 0px;
+}
+
+.navbar-default .navbar-nav>li>a, .navbar-default .navbar-nav>li>a:focus {
+	color: #ffffff;
+}
+
+.navbar-default .navbar-nav>li>a:hover {
+	background-color: #e7e7e7;
+	color: #555555;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+	background-color: #ffffff;
+}
+
 /* ID's */
 
 /* MEDIA QUERIES */
@@ -46,5 +88,11 @@ body {
 		border-radius: 0px;
 		height: 100vh;
 		padding-top: 40px;
+	}
+}
+
+@media (max-width: 767px) {
+	.navbar-default .navbar-nav .open .dropdown-menu>li>a {
+		color: #ffffff;
 	}
 }
