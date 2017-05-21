@@ -1,3 +1,18 @@
+<?php
+	$mail = $_COOKIE["email"];
+	$conexion = mysqli_connect("localhost", "root", "", "PetFace") or die ("No se puede conectar con el servidor");
+	$sql= "SELECT * FROM cuentas where Email= '$mail' ";
+	$result = mysqli_query($conexion,$sql);
+	if (mysqli_num_rows($result)>0) 
+	{
+		echo "entro aca <br>";
+		while($row = mysqli_fetch_assoc($result)) 
+	    {
+			$nombre=$row["Nombre"];
+		}
+	} 
+	setcookie("email",$mail,time()+1728000,"/");
+?>
 <nav class="navbar navbar-default navbar-fixed-top">
 	<div class="container-fluid">
 		<!-- Brand and toggle get grouped for better mobile display -->
@@ -16,14 +31,15 @@
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#">Inicio</a></li>
+				<li><a href="home.php">Inicio</a></li>
+				<li><a href="../mascotas.php">Mis mascotas</a></li>
 				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> Usuario <span class="caret"></span></a>
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> <?php echo $nombre ?> <span class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a href="#">Accion 1</a></li>
 						<li><a href="#">Accion 2</a></li>
 						<li role="separator" class="divider"></li>
-						<li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Salir</a></li>
+						<li><a href="./logica/logout.php"><span class="glyphicon glyphicon-log-out"></span> Salir</a></li>
 					</ul>
 				</li>
 			</ul>

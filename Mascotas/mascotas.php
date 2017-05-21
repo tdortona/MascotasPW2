@@ -1,4 +1,3 @@
-
 <?php include("includes\cabecera.php"); ?>
 	<?php include("includes\\navbar.php"); ?>
 	<main>

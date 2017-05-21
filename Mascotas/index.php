@@ -1,5 +1,5 @@
-<?php include("cabecera.php"); ?>
-
+<?php include("includes\cookie.php"); ?>
+<?php include("includes\cabecera.php"); ?>
 </head>
 <body>
 	<div class="row imageBg">
@@ -7,22 +7,30 @@
 			<div class="loginForm">
 				<img src="img/logo.png" alt="PetFace" class="img img-responsive">
 				<br>
-				<form action="" method="POST">
+				<?php 
+					session_start();
+					if (isset($_SESSION["noIngreso"]) and $_SESSION["noIngreso"]==1)
+					{
+						echo "<p>El E-mail o contraseña son incorrectos. Por favor, re-ingreselos</p>";
+						$_SESSION["noIngreso"]=0;
+					}
+				?>
+				<form action="logica\login.php" method="POST">
 					<div class="form-group">
 						<label for="mail">E-Mail</label>
-						<input type="email" class="form-control" id="mail" placeholder="E-Mail" required="required">
+						<input type="email" class="form-control" id="mail" name="mail" placeholder="E-Mail" required="required">
 					</div>
 					<div class="form-group">
-						<label for="password">Password</label>
-						<input type="password" class="form-control" id="password" placeholder="Password" required="required">
+						<label for="password">Contraseña</label>
+						<input type="password" class="form-control" id="password" name="password" placeholder="Contraseña" required="required">
 					</div>
 
 					<input type="submit" class="btn btn-primary btn-block" value="Ingresar"></input>
 				</form>
 				<br>
-				<p class="text-center">¿No tienes cuenta? Registrate haciendo <a href="#">click aquí.</a></p>
+				<p class="text-center">¿No tienes cuenta? Registrate haciendo <a href="registro.php">click aquí.</a></p>
 			</div>
 		</div>
 	</div>
 
-<?php include("pie.php"); ?>
+<?php include("includes\pie.php"); ?>
