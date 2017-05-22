@@ -39,18 +39,20 @@ footer > p {
 	color: #ffffff;
 }
 
-.imageBg {
+.full-height {
+	min-height: 100vh;
+}
+
+.image-bg {
 	background-image: url("../img/petface_bg.jpg");
 	background-attachment: fixed;
 	background-position: center center;
 	background-repeat:  no-repeat;
 	background-size:  cover;
-	background-color: #999;
-
-	min-height: 100vh;
+	background-color: #29ac78;
 }
 
-.loginForm {
+.login-form {
 	margin-top: 40px;
 	background-color: #ffffff;
 	padding: 20px;
@@ -78,16 +80,38 @@ footer > p {
 	background-color: #ffffff;
 }
 
+.jumbotron .container .col-xs-1,
+.jumbotron .container .col-xs-2,
+.jumbotron .container .col-xs-3,
+.jumbotron .container .col-xs-4,
+.jumbotron .container .col-xs-5,
+.jumbotron .container .col-xs-7,
+.jumbotron .container .col-xs-8,
+.jumbotron .container .col-xs-9,
+.jumbotron .container .col-xs-10,
+.jumbotron .container .col-xs-11,
+.jumbotron .container .col-xs-12 {
+	float: none;
+}
+
+.jumbotron {
+	margin-bottom: 10px;
+}
+
 /* ID's */
 
 /* MEDIA QUERIES */
 
 @media screen and (max-width: 425px) {
-	.loginForm {
+	.login-form {
 		margin: 0;
 		border-radius: 0px;
 		height: 100vh;
 		padding-top: 40px;
+	}
+
+	#registro-form {
+		margin-bottom: 40px;
 	}
 }
 

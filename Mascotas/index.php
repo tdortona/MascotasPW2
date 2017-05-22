@@ -2,10 +2,10 @@
 <?php include("includes\cabecera.php"); ?>
 </head>
 <body>
-	<div class="row imageBg">
+	<div class="row full-height image-bg">
 		<div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
-			<div class="loginForm">
-				<img src="img/logo.png" alt="PetFace" class="img img-responsive">
+			<div class="login-form">
+				<img src="img/logo_nav.png" alt="PetFace" class="img img-responsive">
 				<br>
 				<?php 
 					session_start();
