@@ -1,17 +1,17 @@
 <?php
-	$mail = $_COOKIE["email"];
-	$conexion = mysqli_connect("localhost", "root", "", "PetFace") or die ("No se puede conectar con el servidor");
-	$sql= "SELECT * FROM cuentas where Email= '$mail' ";
+	$mail = $_COOKIE["mail"];
+	$conexion = mysqli_connect("localhost", "root", "", "mascotaspw2") or die ("No se puede conectar con el servidor");
+	$sql= "SELECT * FROM usuario where mail= '$mail' ";
 	$result = mysqli_query($conexion,$sql);
 	if (mysqli_num_rows($result)>0) 
 	{
 		echo "entro aca <br>";
 		while($row = mysqli_fetch_assoc($result)) 
 	    {
-			$nombre=$row["Nombre"];
+			$nombre=$row["nombre"];
 		}
 	} 
-	setcookie("email",$mail,time()+1728000,"/");
+	setcookie("mail",$mail,time()+1728000,"/");
 ?>
 <nav class="navbar navbar-default navbar-fixed-top">
 	<div class="container-fluid">

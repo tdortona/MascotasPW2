@@ -1,5 +1,5 @@
 <?php 
-	if(isset($_COOKIE["email"]))
+	if(isset($_COOKIE["mail"]))
 	{
 		header("location:home.php");
 	}
