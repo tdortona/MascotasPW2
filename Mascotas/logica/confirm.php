@@ -52,7 +52,7 @@
         	$_SESSION["sexo"]=$sexo;
         	$_SESSION["errorTipo"]="contraseña";
         	header("location:../registro.php");
-        	break;
+        	
         }    
         
     
@@ -75,7 +75,7 @@
         	$_SESSION["sexo"]=$sexo;
         	$_SESSION["errorTipo"]="mail";
         	header("location:../registro.php");
-        	break;
+        	
 		    }
 		}
     }
