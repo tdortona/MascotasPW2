@@ -33,10 +33,12 @@
 					}
 				?>
 				<h2 class="text-center">Registro de usuario</h2>
-				<form action="logica\confirm.php" method="POST" id="registro-form">
+				<form action="logica\confirm.php" method="POST" id="registro-form" enctype="multipart/form-data">
 					<div class="col-sm-6">
 						<div class="form-group">
 							<label for="nombre">Nombre y Apellido</label>
+							
+
 							
 							<input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre y Apellido" required="required" <?php if (isset($_SESSION["nombre"]) and $_SESSION["nombre"]!='') {echo 'value="'.$_SESSION["nombre"].'"'; $_SESSION["nombre"]='';} ?> >
 						</div>
@@ -60,6 +62,10 @@
 						</div>
 					</div>
 					<div class="col-sm-6">
+						<label for="imagen">Imagen</label>
+							<br>
+							<input type="file" class="form-control" id="imagen" name="imagen" placeholder="Imagen" required="required" <?php if (isset($_SESSION["imagen"]) and $_SESSION["imagen"]!='') {echo 'value="'.$_SESSION["imagen"].'"'; $_SESSION["imagen"]='';} ?> >
+							
 						<div class="form-group">
 							<label for="mail">E-Mail</label>
 							<input type="email" class="form-control" id="mail" name="mail" placeholder="E-Mail" required="required">
@@ -74,7 +80,7 @@
 						</div>
 					</div>
 					<div class="col-sm-12">
-						<a href="javascript:history.back()" class="btn btn-danger">Cancelar</a>
+						<a href="index.php" class="btn btn-danger">Cancelar</a>
 						<input type="submit" class="btn btn-success" id="btnConfirmar" value="Confirmar"></input>
 					</div>
 				</form>

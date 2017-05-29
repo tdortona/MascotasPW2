@@ -19,7 +19,7 @@
 		header("location:../index.php");
 	}
 
-	$conexion = mysqli_connect("localhost", "root", "", "mascotaspw2") or die ("No se puede conectar con el servidor");
+	$conexion = mysqli_connect("localhost", "root", "", "petfacepw2") or die ("No se puede conectar con el servidor");
 
 	$sql= "SELECT * FROM usuario";
 
@@ -38,14 +38,15 @@
         }
         else
         {
+            
         	$estado=0;
 
             echo $row['mail'].'<br>';
             echo $row['password'].'<br>';
             echo $mail.'<br>';
             echo $password.'<br>';
-
-        	/*session_start();
+            /*
+        	session_start();
 
         	$_SESSION["error"]=$usuario;
         	$_SESSION["errorTipo"]="usuario";

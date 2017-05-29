@@ -9,6 +9,13 @@
 	$fechaNacimiento=date('Y-m-d',strtotime( str_replace('/', '-', $_POST["fechaNacimiento"])));
 	$mail=$_POST["mail"];
 	$sexo=$_POST["sexo"];
+	
+	@$imagen="Imagen Usuario";
+	@$archivo=$_FILES['imagen']['tmp_name'];
+	@$nombreArchivo=$_FILES['imagen']['name'];
+	move_uploaded_file($archivo,$imagen."/".$nombreArchivo);
+	@$imagen=$imagen."/".$nombreArchivo;
+
 	$fechaRegistro=date('Y-m-d');
 	$estado=0;
 
@@ -29,7 +36,7 @@
 		header("location:../index.php");
 	}*/
 	
-	$conexion = mysqli_connect("localhost", "root", "", "mascotaspw2") or die ("No se puede conectar con el servidor");
+	$conexion = mysqli_connect("localhost", "root", "", "petfacepw2") or die ("No se puede conectar con el servidor");
 
 	$sql= "SELECT * FROM usuario";
 
@@ -50,9 +57,10 @@
         	$_SESSION["fechaNacimiento"]=$_POST["fechaNacimiento"];
         	$_SESSION["nombre"]=$nombre;
         	$_SESSION["sexo"]=$sexo;
+        	$_SESSION["imagen"]=$imagen;
         	$_SESSION["errorTipo"]="contraseña";
         	header("location:../registro.php");
-        	
+        	break;
         }    
         
     
@@ -73,16 +81,17 @@
         	$_SESSION["fechaNacimiento"]=$_POST["fechaNacimiento"];
         	$_SESSION["nombre"]=$nombre;
         	$_SESSION["sexo"]=$sexo;
+        	$_SESSION["imagen"]=$imagen;
         	$_SESSION["errorTipo"]="mail";
         	header("location:../registro.php");
-        	
+        	break;
 		    }
 		}
     }
 	    
 	if ($estado==1)
 	{
-		$sql= "INSERT INTO usuario VALUES ('','$mail','$password','$nombre','','$fechaNacimiento','$sexo',$telefono,'$fechaRegistro')";
+		$sql= "INSERT INTO usuario VALUES ('','$mail','$password','$nombre','','$fechaNacimiento','$sexo','$imagen',$telefono,'$fechaRegistro')";
 		$result=mysqli_query($conexion,$sql) or die("no se agrego la fila");
 		session_start();
 		$_SESSION["nombre"]=$nombre;
