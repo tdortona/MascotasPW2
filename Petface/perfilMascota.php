@@ -1,35 +1,24 @@
 <?php include("includes\\noCookie.php"); ?>
+<?php include("includes\datosMascota.php"); ?>
+<?php include("includes\datosUsuario.php"); ?>
 <?php include("includes\cabecera.php"); ?>
 <?php include("includes\\navbar.php"); ?>
 
 	<main>
 		<!-- MENU VERTICAL --> 
 				
-						<?php
-
-				        $nombre = $_GET['nombre'];
-						$conexion = mysqli_connect("localhost", "root", "", "petfacepw2") or die ("No se puede conectar con el servidor");
-						$sql= "SELECT mascota.nombre as nombre, mascota.imagen as imagen, usuario.imagen as imagenUsuario, usuario.nombre as nombreUsuario, tipo.tipo as tipo, raza.raza as raza, mascota.fechaNacimiento as fechaNacimiento, mascota.sexo as sexo FROM mascota INNER JOIN usuario ON mascota.idUsuario=usuario.id INNER JOIN tipo ON mascota.idTipo=tipo.id INNER JOIN raza ON mascota.idRaza=raza.id where usuario.mail= '$mail' and mascota.nombre ='".$_GET['nombre']."' ";
-						$result = mysqli_query($conexion,$sql);
-
-						if (mysqli_num_rows($result)>0) 
-							{
 						
-						while($row = mysqli_fetch_assoc($result)) 
-					    	{
-							
-						?>
 							<div class="navbar navbar-inverse navbar-fixed-left">
 			    			
 				    			<!-- Nombre Mascota -->
 							    <a class="navbar-brand" href="#">
-							    	<?php echo $row['nombre']; ?>
+							    	<?php echo $nombreMascota; ?>
 								</a>
 
 							    <div class="well">
 							        
-							    	<img src="logica/<?php echo $row['imagen']; ?>" class="img-circle" height="150" width="150" alt="<?php echo $row['imagen']; ?>">
-							    	<img src="logica/<?php echo $row['imagenUsuario']; ?>" class="img-circle" height="70" width="70" alt="Avatar" style="position:absolute; left: 120px; top:150px;">
+							    	<img src="logica/<?php echo $imagenMascota; ?>" class="img-circle" height="150" width="150" alt="Avatar mascota">
+							    	<img src="logica/<?php echo $imagenUsuario2; ?>" class="img-circle" height="70" width="70" alt="Avatar" style="position:absolute; left: 120px; top:150px;">
 							    </div>
 										
 						    	<ul class="nav navbar-nav">
@@ -38,10 +27,10 @@
 
 							    	/* Datos Mascota */
 
-									echo "<li>Dueño: <b>".$row["nombreUsuario"]."</b></li>";
-									echo "<li>Tipo: <b>".$row["tipo"]."</b></li>";
-									echo "<li>Raza: <b>".$row["raza"]."</b></li>";
-									if ($row["sexo"]=="H")
+									echo "<li>Dueño: <b>".$nombreUsuario2."</b></li>";
+									echo "<li>Tipo: <b>".$tipo."</b></li>";
+									echo "<li>Raza: <b>".$raza."</b></li>";
+									if ($sexoMascota=="H")
 										{
 											echo "<li>Sexo:<b> Hembra</b></li>";
 										}
@@ -49,18 +38,13 @@
 										{
 											echo "<li>Sexo:<b> Macho</b></li>";
 										}
-									echo "<li>Fecha de nacimiento: <b>".$row["fechaNacimiento"]."</b></li>";
-									}
-									}
-									else
-									{
-										echo "<h4>Aun no agrego sus mascota, agregue la primera!</h4>";
-									}
+									echo "<li>Fecha de nacimiento: <b>".$fechaNacimientoMascota."</b></li>";
+									
 							?>
 								</ul>
 								
 								<form action="mascotas_registro.php" method="POST">
-									<input type="submit" class="btn btn-primary" value="registrar mascota"></input>
+									<input type="submit" class="btn btn-primary" value="Registrar mascota"></input>
 								</form>	
 								<hr style="left:150px; bottom:520px;">
 							</div>
@@ -76,35 +60,86 @@
 
 			        <!-- PUBLICACIÓN -->
 
+			     <form action="logica\confirm_publicacion.php" method="POST" enctype="multipart/form-data">    
 			      <div class="col-sm-10" >
 			        <div class="panel panel-default"  >
-			          <div class="panel-heading" style="background-image: linear-gradient(90deg, #309971, #2d2d2d); color: white; font-size: 20px;"><strong>Publicación</strong> </div>
+			          <div class="panel-heading" style="background-image: linear-gradient(90deg, #309971, #2d2d2d); color: white; font-size: 20px;">
+			          	<strong>Publicación</strong> 
+			          </div>
 			            <div class="panel-body">
 			              <div class="input-group image-preview">
 			                
 			              </div>
 			              
 			              <!-- Comentarios -->
-			              <textarea class="form-control" rows="2" id="comment" placeholder="¡Comentario acá..!"></textarea>
-			              
+			              <textarea class="form-control" rows="2" placeholder="¡Comentario acá..!" id="texto" name="texto"></textarea>
+			              <input type="hidden" name="idMascota" value="<?php echo $idMascota; ?>">
 			              <br />
 			              <div class="form-group botones">
 			                <button class="btn btn-default boton btn-lg" type="submit">
 			                    
 			                    Enviar
 			                </button>
-			                <button class="btn btn-default boton " type="submit" style=" position: relative; top: 5px;">
-			                    <span class="glyphicon glyphicon-camera"></span>
-			                    Foto
-			                </button>
-			                <button class="btn btn-default boton" type="submit" style=" position: relative; top: 5px;">
-			                    <span class="glyphicon glyphicon-facetime-video"></span>
-			                    Video
-			                </button>
+							<label class="btn btn-default btn-file">
+						    	<span class="glyphicon glyphicon-camera"></span>
+						    	Imagen 
+						    	<input type="file" style="display: none;" id="pathImagen" name="pathImagen">
+							</label>
+
+			                <label class="btn btn-default btn-file">
+	    						<span class="glyphicon glyphicon-facetime-video"></span>
+	    						Video
+	    						<input type="file" style="display: none;" id="pathVideo" name="pathVideo">
+							</label>
 			            </div>
 			          </div>
 			        </div>
 			      </div>
+
+			      	<!-- MUESTRO LA PUBLICACIÓN -->	
+			      <?php
+					$mail = $_COOKIE["mail"];
+					$conexion = mysqli_connect("localhost", "root", "", "petfacepw2") or die ("No se puede conectar con el servidor");
+					$sql= "SELECT texto as texto, pathImagen as pathImagen FROM publicacion where idMascota= '$idMascota' ORDER BY fechaPublicacion DESC";
+					$result = mysqli_query($conexion,$sql);
+					
+					echo "<ul>";
+					if (mysqli_num_rows($result)>=0) 
+									{
+										while($row = mysqli_fetch_assoc($result)) 
+									    {	
+									    	echo "<li>";
+
+									    	echo "<div class='row'>";
+									    	
+										    	echo "<div class='col-sm-4'>";
+				            						echo "<div class='imgComent'>";
+														echo "<img src='logica/".$imagenMascota."' class='img-circle' height='55' width='55' alt='Avatar'>";
+														echo $nombreMascota;
+													echo "</div>";
+												echo "</div>";
+
+												echo "<div class='col-sm-10'>";
+													echo "<p>".$row["texto"]."</p>";
+													echo "<img src='logica/".$row["pathImagen"]."' height='150' width='150' class='imagenComentarios' alt='Avatar'>";
+												echo "</div>";
+											echo "</div>";
+
+											echo "</li>";
+
+											echo "------------------------------------------------------------------------------------------------------------------------------";
+										}
+									}
+									else
+									{
+										echo "<h4>Agregá</h4>";
+									}
+					echo "</ul>";
+								?>
+
+				
+			      
+			    </form>
 
 		      	<!-- fin PUBLICACIÓN -->
 
@@ -112,7 +147,7 @@
 		        <!-- PUBLICACIONES AMIGOS -->
 		        
 
-		        <div class="row">
+		        <!--div class="row">
 		          
 		          <div class="col-sm-4">
 		            <div class="imgComent">
@@ -144,7 +179,7 @@
 
 		              <img src="img/mascota.jpg" height="150" width="150" class="imagenComentarios" alt="Avatar">
 		            </div>
-		        </div> 
+		        </div--> 
 
 		    </section>
 	</main>

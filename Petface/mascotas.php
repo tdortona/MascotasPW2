@@ -1,4 +1,6 @@
 <?php include("includes\\noCookie.php"); ?>
+<?php include("includes\datosUsuario.php"); ?>
+
 <?php include("includes\cabecera.php"); ?>
 <?php include("includes\\navbar.php"); ?>
 
@@ -8,7 +10,7 @@
 				<?php
 				$mail = $_COOKIE["mail"];
 				$conexion = mysqli_connect("localhost", "root", "", "petfacepw2") or die ("No se puede conectar con el servidor");
-				$sql= "SELECT mascota.nombre as nombre, mascota.imagen as imagen, tipo.tipo as tipo, raza.raza as raza, mascota.fechaNacimiento as fechaNacimiento, mascota.sexo as sexo FROM mascota INNER JOIN usuario ON mascota.idUsuario=usuario.id INNER JOIN tipo ON mascota.idTipo=tipo.id INNER JOIN raza ON mascota.idRaza=raza.id where usuario.mail= '$mail' ";
+				$sql= "SELECT mascota.id as id, mascota.nombre as nombre, mascota.imagen as imagen, tipo.tipo as tipo, raza.raza as raza, mascota.fechaNacimiento as fechaNacimiento, mascota.sexo as sexo FROM mascota INNER JOIN usuario ON mascota.idUsuario=usuario.id INNER JOIN tipo ON mascota.idTipo=tipo.id INNER JOIN raza ON mascota.idRaza=raza.id where usuario.mail= '$mail' ";
 				$result = mysqli_query($conexion,$sql);
 				if (mysqli_num_rows($result)>0) 
 				{
@@ -17,8 +19,7 @@
 				    {
 						/*$idDueño=$row["id"];*/
 						echo "<li class='col-lg-3 col-sm-4 col-xs-6'>";
-						echo '<a href="' . htmlspecialchars("/Petface/perfilMascota.php?nombre=" .
-													        $row["nombre"]) . '">'."\n";
+						echo '<a>'."\n";
 						echo " <h2>".$row["nombre"]."</h2><br> ";
 						?> <img src="logica/<?php echo $row['imagen']; ?>" class="img-responsive" height="130px">
 						<?php
@@ -34,7 +35,13 @@
 							echo "Sexo: Macho<br>\n";
 						}
 						echo "Fecha de Nacimiento: ".$row["fechaNacimiento"]."<br>\n";
-						echo "</li>";
+						echo
+						'<form action="perfilMascota.php" method="GET" enctype="multipart/form-data">
+						<input type="hidden" name="nombreMascota" value="'.$row["id"].'">
+				<input type="submit" class="btn btn-primary" value="ir al perfil"></input>
+				
+			</form>';
+						echo "</a></li>";
 					}
 				}
 				else
@@ -43,7 +50,8 @@
 				}
 				?>
 			</ul>
-			<form action="mascotas_registro.php" method="POST" enctype="multipart/form-data">
+			<form action="mascotas_registro.php" method="get" enctype="multipart/form-data">
+				
 				<input type="submit" class="btn btn-primary" value="Registrar Mascota"></input>
 				
 			</form>

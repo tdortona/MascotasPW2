@@ -2,8 +2,10 @@
 
 <?php
 
+	date_default_timezone_set('America/Argentina/Buenos_Aires');
+	
 	$texto=$_POST["texto"];
-
+	$idMascota=$_POST["idMascota"];
 	@$pathImagen="Imagen Publicacion";
 	@$archivo=$_FILES['pathImagen']['tmp_name'];
 	@$nombreArchivo=$_FILES['pathImagen']['name'];
@@ -11,18 +13,18 @@
 	@$pathImagen=$pathImagen."/".$nombreArchivo;
 
 
-	$fechaRegistro=date('Y-m-d');
+	$fechaPublicacion=date('Y-m-d H:i:s');
 	/*$estado=0;*/
 	
 	$conexion = mysqli_connect("localhost", "root", "", "petfacepw2") or die ("No se puede conectar con el servidor");
 
 	$sql= "SELECT * FROM publicacion";
-
+/*
 	$result = mysqli_query($conexion,$sql);
 	$result2 = mysqli_query($conexion,$sql);
 
 			/* -------------------- */
-
+/*
 	if ($password==$rePassword)
         {
         	$estado=1;
@@ -69,16 +71,16 @@
 
 
 
-	$sql= "INSERT INTO publicacion VALUES ('','$idMascota','','$texto','$pathImagen','')";
+	$sql= "INSERT INTO publicacion VALUES ('','$idMascota','','$texto','$pathImagen','','$fechaPublicacion')";
 		$result=mysqli_query($conexion,$sql) or die("no se agrego la fila");
 		session_start();
 		$_SESSION["nombre"]=$nombre;
-		header("location:../home.php");
+		header("location:../perfilMascota.php?nombreMascota=".$idMascota."");
 
 		/* -------------------- */
 
 
-		}
+		//}
 
 
 		/* -------------------- */

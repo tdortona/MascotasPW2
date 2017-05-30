@@ -1,6 +1,6 @@
 <?php 
 	$mail=$_POST["mail"];
-	$password=$_POST["password"];
+	$password=md5($_POST["password"]);
 	$estado=0;
 
 	if(isset($_POST["mail"]) or $_POST["mail"]!="")
@@ -28,7 +28,7 @@
 
 	while($row = mysqli_fetch_assoc($result)) 
     {
-        if ($row['mail']==$mail && $row['password']==$password)
+        if ($row['mail']==$mail && $row['password']==md5($password))
         {
         	$estado=1;
         	setcookie("mail",$mail,time()+1728000,"/");
@@ -38,15 +38,14 @@
         }
         else
         {
-            
         	$estado=0;
 
-            echo $row['mail'].'<br>';
+            /*echo $row['mail'].'<br>';
             echo $row['password'].'<br>';
             echo $mail.'<br>';
-            echo $password.'<br>';
-            /*
-        	session_start();
+            echo $password.'<br>';*/
+
+        	/*session_start();
 
         	$_SESSION["error"]=$usuario;
         	$_SESSION["errorTipo"]="usuario";
@@ -59,10 +58,10 @@
 
 
 
-    /*if ($estado==0)
+    if ($estado==0)
     {
     	session_start();
     	$_SESSION["noIngreso"]=1;
     	header("location:../index.php");
-    }*/
+    }
 ?>

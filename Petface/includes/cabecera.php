@@ -37,6 +37,16 @@
                 $scope.razas = data;
                 
            });  
-      }  
+      }
+
+      $scope.load_mascota = function(){  
+           $http.get("logica\\load_mascota.php")  
+           .success(function(data){ 
+            	$scope.mascota = $scope.option="0";
+                $scope.mascotas = data;
+                  
+           })  
+      }   
  });  
  </script>  
+ 

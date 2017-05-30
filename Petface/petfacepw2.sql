@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
+-- version 4.6.5.2
+-- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-05-2017 a las 22:05:07
--- Versión del servidor: 10.1.13-MariaDB
--- Versión de PHP: 5.6.20
+-- Tiempo de generación: 29-05-2017 a las 22:58:54
+-- Versión del servidor: 10.1.21-MariaDB
+-- Versión de PHP: 5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -19,6 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `petfacepw2`
 --
+CREATE DATABASE IF NOT EXISTS `petfacepw2` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `petfacepw2`;
 
 -- --------------------------------------------------------
 
@@ -78,7 +80,21 @@ CREATE TABLE `mascota` (
 --
 
 INSERT INTO `mascota` (`id`, `idUsuario`, `nombre`, `idTipo`, `idRaza`, `sexo`, `fechaNacimiento`, `edad`, `imagen`, `idEstado`, `fechaRegistro`) VALUES
-(22, 23, 'Chofa', 1, 2, 'H', '2017-05-05', 0, 'Imagen Mascota/Koala.jpg', 1, '2017-05-30');
+(1, 12, 'pipo', 1, 6, 'H', '2017-05-04', 0, '', 1, '2017-05-26'),
+(2, 12, 'fufu', 1, 5, 'M', '2015-10-15', 0, '', 1, '2017-05-26'),
+(3, 12, 'mishu', 2, 10, 'H', '2011-11-18', 0, '', 1, '2017-05-26'),
+(4, 13, 'ruperto', 3, 13, 'H', '2016-05-06', 0, '', 1, '2017-05-26'),
+(10, 12, 'vvwww', 2, 9, 'H', '2017-05-06', 0, 'Imagen Mascota/', 1, '2017-05-27'),
+(11, 12, 'pp', 2, 8, 'M', '2017-05-05', 0, 'Imagen Mascota/Chrysanthemum.jpg', 1, '2017-05-27'),
+(12, 14, 'c', 2, 9, 'H', '2017-05-04', 0, 'Imagen Mascota/Desert.jpg', 1, '2017-05-27'),
+(13, 15, 'chofa', 3, 13, 'M', '2017-05-06', 0, 'Imagen Mascota/Penguins.jpg', 1, '2017-05-27'),
+(14, 17, 'pipo', 1, 4, 'M', '2017-05-11', 0, 'Imagen Mascota/Koala.jpg', 1, '2017-05-28'),
+(15, 17, 'chofa', 2, 9, 'H', '2017-05-07', 0, 'Imagen Mascota/Desert.jpg', 1, '2017-05-28'),
+(16, 14, 'pp', 2, 8, 'M', '2017-05-01', 0, 'Imagen Mascota/Lighthouse.jpg', 1, '2017-05-28'),
+(17, 18, 'chofa', 2, 10, 'M', '2017-05-05', 0, 'Imagen Mascota/Chrysanthemum.jpg', 1, '2017-05-28'),
+(18, 18, 'bcbhg', 3, 13, 'M', '2017-05-01', 0, 'Imagen Mascota/Penguins.jpg', 1, '2017-05-28'),
+(19, 19, 'lili', 1, 5, 'H', '2010-11-11', 0, 'Imagen Mascota/18622518_528209870863821_4978525411435578634_n.png', 1, '2017-05-29'),
+(20, 19, 'nacho', 1, 4, 'M', '2010-05-05', 0, 'Imagen Mascota/21565.png', 1, '2017-05-29');
 
 -- --------------------------------------------------------
 
@@ -113,20 +129,18 @@ CREATE TABLE `publicacion` (
   `likes` int(11) NOT NULL,
   `texto` varchar(200) NOT NULL,
   `pathImagen` varchar(50) DEFAULT NULL,
-  `pathVideo` varchar(50) DEFAULT NULL,
-  `fechaPublicacion` datetime NOT NULL
+  `pathVideo` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `publicacion`
 --
 
-INSERT INTO `publicacion` (`id`, `idMascota`, `likes`, `texto`, `pathImagen`, `pathVideo`, `fechaPublicacion`) VALUES
-(24, 21, 0, 'Hola ', 'Imagen Publicacion/Jellyfish.jpg', '', '2017-05-30 16:34:17'),
-(25, 21, 0, 'Chau', 'Imagen Publicacion/Penguins.jpg', '', '2017-05-30 16:35:58'),
-(26, 21, 0, 'ewfwef', 'Imagen Publicacion/', '', '2017-05-30 16:41:03'),
-(27, 22, 0, 'Hola', 'Imagen Publicacion/Tulips.jpg', '', '2017-05-30 17:03:11'),
-(28, 22, 0, 'Chau', 'Imagen Publicacion/Jellyfish.jpg', '', '2017-05-30 17:03:20');
+INSERT INTO `publicacion` (`id`, `idMascota`, `likes`, `texto`, `pathImagen`, `pathVideo`) VALUES
+(5, 0, 0, 'lalala', 'Imagen Publicacion/Chrysanthemum.jpg', ''),
+(6, 0, 0, 'ss', 'Imagen Publicacion/Koala.jpg', ''),
+(7, 0, 0, 'qqq', 'Imagen Publicacion/Chrysanthemum.jpg', ''),
+(8, 0, 0, 'fsd', 'Imagen Publicacion/Desert.jpg', '');
 
 -- --------------------------------------------------------
 
@@ -199,7 +213,7 @@ INSERT INTO `tipo` (`id`, `tipo`) VALUES
 CREATE TABLE `usuario` (
   `id` int(11) NOT NULL,
   `mail` varchar(100) NOT NULL,
-  `password` varchar(40) NOT NULL,
+  `password` varchar(30) NOT NULL,
   `nombre` varchar(50) NOT NULL,
   `localidad` varchar(30) DEFAULT NULL,
   `fechaNacimiento` date NOT NULL,
@@ -214,7 +228,14 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id`, `mail`, `password`, `nombre`, `localidad`, `fechaNacimiento`, `sexo`, `imagen`, `telefono`, `fechaRegistro`) VALUES
-(23, 'k@k', '91f0918cf58f4e83396c0522fcbd469e', 'Karen', '', '2017-05-29', 'F', 'Imagen Usuario/Chrysanthemum.jpg', '234234', '2017-05-30');
+(12, 'karen@hotmail.com', 'k', 'karen', '', '1994-01-22', 'F', '', '44445555', '2017-05-25'),
+(13, 'ariel_rando@hotmail.com.ar', 'yuyu', 'gabriel rando', '', '1992-03-29', 'M', '', '44444444', '2017-05-26'),
+(14, 'karem1994@hotmail.com', '1', 'Lala', '', '2017-05-25', 'M', 'Imagen Usuario/Tulips.jpg', '324', '2017-05-27'),
+(15, 'prueba@prueba', '1', 'Prueba', '', '2017-05-29', 'F', 'Imagen Usuario/Chrysanthemum.jpg', '2424', '2017-05-27'),
+(16, 'prueba2@hotmail.com', '1', 'Prueba2', '', '2017-05-31', 'M', 'Imagen Usuario/Desert.jpg', '25', '2017-05-27'),
+(17, 'ariel_rando@hotmail.com', 'g', 'gabriel', '', '1992-03-31', 'M', 'Imagen Usuario/Penguins.jpg', '44445555', '2017-05-28'),
+(18, 'm@m', '1', 'kfds', '', '2017-05-31', 'M', 'Imagen Usuario/Hydrangeas.jpg', '235', '2017-05-28'),
+(19, 'gr_reanimation@hotmail.com', '1', 'gr', '', '1995-02-16', 'M', 'Imagen Usuario/18813584_1343304145777518_862275814274565492_n.jpg', '55556666', '2017-05-29');
 
 --
 -- Índices para tablas volcadas
@@ -280,7 +301,7 @@ ALTER TABLE `estado`
 -- AUTO_INCREMENT de la tabla `mascota`
 --
 ALTER TABLE `mascota`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT de la tabla `prueba`
 --
@@ -290,7 +311,7 @@ ALTER TABLE `prueba`
 -- AUTO_INCREMENT de la tabla `publicacion`
 --
 ALTER TABLE `publicacion`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT de la tabla `raza`
 --
@@ -305,7 +326,7 @@ ALTER TABLE `tipo`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 --
 -- Restricciones para tablas volcadas
 --
