@@ -60,47 +60,23 @@
 
 			        <!-- PUBLICACIÓN -->
 
-			     <form action="logica\confirm_publicacion.php" method="POST" enctype="multipart/form-data">    
-			      <div class="col-sm-10" >
-			        <div class="panel panel-default"  >
-			          <div class="panel-heading" style="background-image: linear-gradient(90deg, #309971, #2d2d2d); color: white; font-size: 20px;">
-			          	<strong>Publicación</strong> 
-			          </div>
-			            <div class="panel-body">
-			              <div class="input-group image-preview">
-			                
-			              </div>
-			              
-			              <!-- Comentarios -->
-			              <textarea class="form-control" rows="2" placeholder="¡Comentario acá..!" id="texto" name="texto"></textarea>
-			              <input type="hidden" name="idMascota" value="<?php echo $idMascota; ?>">
-			              <br />
-			              <div class="form-group botones">
-			                <button class="btn btn-default boton btn-lg" type="submit">
-			                    
-			                    Enviar
-			                </button>
-							<label class="btn btn-default btn-file">
-						    	<span class="glyphicon glyphicon-camera"></span>
-						    	Imagen 
-						    	<input type="file" style="display: none;" id="pathImagen" name="pathImagen">
-							</label>
-
-			                <label class="btn btn-default btn-file">
-	    						<span class="glyphicon glyphicon-facetime-video"></span>
-	    						Video
-	    						<input type="file" style="display: none;" id="pathVideo" name="pathVideo">
-							</label>
-			            </div>
-			          </div>
-			        </div>
-			      </div>
-
+			     <?php 
+			     $sql3="SELECT * FROM mascota INNER JOIN usuario ON mascota.idUsuario=usuario.id WHERE usuario.mail='$mail' and mascota.id='$idMascota'";
+			    $result3=mysqli_query($conexion,$sql3);
+				if (mysqli_num_rows($result3)>0)
+			    {
+			    	include("includes\publicacion.php"); 
+				}
+				else
+				{
+					include("includes\seguirPerfil.php"); 
+				}
+				?>
 			      	<!-- MUESTRO LA PUBLICACIÓN -->	
 			      <?php
 					$mail = $_COOKIE["mail"];
 					$conexion = mysqli_connect("localhost", "root", "", "petfacepw2") or die ("No se puede conectar con el servidor");
-					$sql= "SELECT texto as texto, pathImagen as pathImagen FROM publicacion where idMascota= '$idMascota' ORDER BY fechaPublicacion DESC";
+					$sql= "SELECT texto as texto, pathImagen as imagenPublicacion FROM publicacion where idMascota= '$idMascota' ORDER BY fechaPublicacion DESC";
 					$result = mysqli_query($conexion,$sql);
 					
 					echo "<ul>";
@@ -121,7 +97,10 @@
 
 												echo "<div class='col-sm-10'>";
 													echo "<p>".$row["texto"]."</p>";
-													echo "<img src='logica/".$row["pathImagen"]."' height='150' width='150' class='imagenComentarios' alt='Avatar'>";
+													if ($row["imagenPublicacion"]!="Imagen Publicacion/")
+													{
+														echo "<img src='logica/".$row["imagenPublicacion"]."' height='150' width='150' class='imagenComentarios' alt='Avatar'>";
+													}
 												echo "</div>";
 											echo "</div>";
 

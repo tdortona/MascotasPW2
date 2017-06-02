@@ -91,8 +91,7 @@
 	    
 	if ($estado==1)
 	{
-		$password = md5($password);
-		$sql= "INSERT INTO usuario VALUES ('','$mail','".md5($password)."','$nombre','','$fechaNacimiento','$sexo','$imagen',$telefono,'$fechaRegistro')";
+		$sql= "INSERT INTO usuario VALUES ('','$mail','$password','$nombre','','$fechaNacimiento','$sexo','$imagen',$telefono,'$fechaRegistro')";
 		$result=mysqli_query($conexion,$sql) or die("no se agrego la fila");
 		session_start();
 		$_SESSION["nombre"]=$nombre;

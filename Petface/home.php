@@ -19,15 +19,38 @@
 				    			Mascotas <span class="caret"></span>
 				    		</a>
 					       <ul class="dropdown-menu dropup" role="menu" aria-labelledby="dLabel">
-				    			<form method="get" action="perfilMascota.php">
+				    		<!--	<form method="get" action="perfilMascota.php">
 									<div ng-app="myapp" ng-controller="usercontroller" ng-init="load_mascota()" class="form-group">  
 				                     
 				                     <select id="mascota" name="nombreMascota" ng-model="mascota" class="form-control" onchange='if(this.value != 0) { this.form.submit(); }'>  
 				                          <option value="0">elija una mascota</option>  
 				                          <option ng-repeat="mascota in mascotas" value="{{mascota.id}}">{{mascota.nombre}}</option>  
 				                     </select>  
+			                     
 									</div>
-								</form>
+								</form>  -->
+									<?php
+
+
+ $connectVerMascotas=mysqli_connect("localhost", "root", "", "petfacepw2") or die ("No se puede conectar con el servidor");
+ $sqlVerMascotas = "SELECT mascota.nombre as nombre, mascota.id as id FROM mascota INNER JOIN usuario ON mascota.idUsuario=usuario.id where usuario.mail= '$mail' "; 
+ $resultVerMascotas = mysqli_query($connectVerMascotas, $sqlVerMascotas);
+
+									if (mysqli_num_rows($resultVerMascotas)>0) 
+									{
+										while($row = mysqli_fetch_assoc($resultVerMascotas)) 
+									    {	
+									 		echo "<li>";
+										    echo 	'<a href="' . htmlspecialchars("/Petface/perfilMascota.php?nombreMascota=" .$row["id"]) . '">'."\n";
+											echo 	"<h4>".$row["nombre"]."</h4> </a>";
+											echo "</li>" ;
+										}
+									}
+									else
+									{
+										echo "<h4>Agregá</h4>";
+									}
+								?>
 					       </ul>
 				     	</li>
 
@@ -60,25 +83,44 @@
 			<!-- CUERPO -->
 
 			  <section id="main-content" >
-			     
-			        <!-- PUBLICACIÓN -->
-			   
 
-			      <!--?php
+		        <!-- PUBLICACIONES AMIGOS -->
+		        
+		         <?php
 					$mail = $_COOKIE["mail"];
 					$conexion = mysqli_connect("localhost", "root", "", "petfacepw2") or die ("No se puede conectar con el servidor");
-					$sql= "SELECT publicacion.texto as texto FROM publicacion INNER JOIN mascota ON mascota.id=publicacion.idMascota INNER JOIN usuario ON mascota.idUsuario=usuario.id where usuario.mail= '$mail' ";
+					$sql= "SELECT publicacion.texto as texto, publicacion.pathImagen as imagenPublicacion, mascota.nombre as nombreMascota, mascota.imagen as imagenMascota FROM publicacion INNER JOIN mascota on publicacion.idMascota=mascota.id INNER JOIN seguidor on publicacion.idMascota=seguidor.idMascota INNER JOIN usuario ON seguidor.idUsuario=usuario.id where usuario.mail='$mail' ORDER BY fechaPublicacion DESC";
 					$result = mysqli_query($conexion,$sql);
 					
 					echo "<ul>";
-					if (mysqli_num_rows($result)>=0) 
+					if (mysqli_num_rows($result)>0) 
 									{
 										while($row = mysqli_fetch_assoc($result)) 
 									    {	
-									 		echo "<li>";
-											echo 	"<h4>".$row["texto"]."</h4>";
+									    	echo "<li>";
+
+									    	echo "<div class='row'>";
+									    	
+										    	echo "<div class='col-sm-4'>";
+				            						echo "<div class='imgComent'>";
+														echo "<img src='logica/".$row["imagenMascota"]."' class='img-circle' height='55' width='55' alt='Avatar'>";
+														echo $row["nombreMascota"];
+													echo "</div>";
+												echo "</div>";
+
+												echo "<div class='col-sm-10'>";
+													echo "<p>".$row["texto"]."</p>";
+													if ($row["imagenPublicacion"]!="Imagen Publicacion/")
+													{
+														echo "<img src='logica/".$row["imagenPublicacion"]."' height='150' width='150' class='imagenComentarios' alt='Avatar'>";
+													}
+													
+												echo "</div>";
+											echo "</div>";
+
 											echo "</li>";
-											
+
+											echo "------------------------------------------------------------------------------------------------------------------------------";
 										}
 									}
 									else
@@ -86,48 +128,7 @@
 										echo "<h4>Agregá</h4>";
 									}
 					echo "</ul>";
-								?-->
-			    
-
-		      	<!-- fin PUBLICACIÓN -->
-
-
-		        <!-- PUBLICACIONES AMIGOS -->
-		        
-
-		        <div class="row">
-		          
-		          <div class="col-sm-4">
-		            <div class="imgComent">
-		               <img src="img/fotoAmigo.jpg" class="img-circle" height="55" width="55" alt="Avatar">
-		               Coraje
-		            </div>
-		          </div>
-		          
-		          <div class="col-sm-10">
-		              <p>Just Forgot that I had to mention something about someone to someone about how I forgot something, but now I forgot it. Ahh, forget it! Or wait. I remember.... no I don't.
-		              </p>
-
-		              <img src="img/mascota.jpg" height="150" width="150" class="imagenComentarios" alt="Avatar">
-		            </div>
-		        </div> 
-
-		        <div class="row" >
-		          
-		          <div class="col-sm-4">
-		            <div class="imgComent">
-		               <img src="img/fotoAmigo.jpg" class="img-circle" height="55" width="55" alt="Avatar">
-		               Coraje
-		            </div>
-		          </div>
-		          
-		          <div class="col-sm-10">
-		              <p>Just Forgot that I had to mention something about someone to someone about how I forgot something, but now I forgot it. Ahh, forget it! Or wait. I remember.... no I don't.
-		              </p>
-
-		              <img src="img/mascota.jpg" height="150" width="150" class="imagenComentarios" alt="Avatar">
-		            </div>
-		        </div> 
+								?>
 
 		    </section>
 	</main>

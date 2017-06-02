@@ -1,6 +1,6 @@
 <?php 
 	$mail=$_POST["mail"];
-	$password=md5($_POST["password"]);
+	$password=$_POST["password"];
 	$estado=0;
 
 	if(isset($_POST["mail"]) or $_POST["mail"]!="")
@@ -28,7 +28,7 @@
 
 	while($row = mysqli_fetch_assoc($result)) 
     {
-        if ($row['mail']==$mail && $row['password']==md5($password))
+        if ($row['mail']==$mail && $row['password']==$password)
         {
         	$estado=1;
         	setcookie("mail",$mail,time()+1728000,"/");
