@@ -60,6 +60,10 @@ footer > p {
 	border-radius: 5px;
 }
 
+.login-form > p {
+	margin-left: 0;
+}
+
 .navbar {
 	background-color: #309971;
 	margin: 0px;

@@ -24,7 +24,6 @@
 						<label for="password">Contraseña</label>
 						<input type="password" class="form-control" id="password" name="password" placeholder="Contraseña" required="required">
 					</div>
-
 					<input type="submit" class="btn btn-primary btn-block" value="Ingresar"></input>
 				</form>
 				<br>

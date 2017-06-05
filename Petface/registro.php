@@ -62,10 +62,10 @@
 						</div>
 					</div>
 					<div class="col-sm-6">
-						<label for="imagen">Imagen</label>
-							<br>
+						<div class="form-group">
+							<label for="imagen">Imagen</label>
 							<input type="file" class="form-control" id="imagen" name="imagen" placeholder="Imagen" required="required" <?php if (isset($_SESSION["imagen"]) and $_SESSION["imagen"]!='') {echo 'value="'.$_SESSION["imagen"].'"'; $_SESSION["imagen"]='';} ?> >
-							
+						</div>	
 						<div class="form-group">
 							<label for="mail">E-Mail</label>
 							<input type="email" class="form-control" id="mail" name="mail" placeholder="E-Mail" required="required">
