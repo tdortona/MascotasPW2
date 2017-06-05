@@ -1,4 +1,6 @@
+<!-- se encarga de ver si esta seteada la cookie con el mail del usuario, si lo esta, no permite entrar a esta pagina, devuelve al home -->
 <?php include("includes\cookie.php"); ?>
+<!-- cebezera con hojas de estilo y scripts -->
 <?php include("includes\cabecera.php"); ?>
 </head>
 <body>
@@ -7,11 +9,16 @@
 			<div class="login-form">
 				<img src="img/logo_nav.png" alt="PetFace" class="img img-responsive">
 				<br>
+				<!-- php que verifica si se intento ingresar a la cuenta y el login fallo, de ser asi devuelve el mensaje de que algo fallo-->
 				<?php 
+					//inicio de sesion
 					session_start();
+					//verifica si la la variable de sesion "noIngreso" esta seteada y tiene por valor 1, si tiene ambas cosas, muestra el mensaje de que fallo el ingreso
 					if (isset($_SESSION["noIngreso"]) and $_SESSION["noIngreso"]==1)
 					{
+						//muestra mensaje
 						echo "<p>El E-mail o contraseña son incorrectos. Por favor, re-ingreselos</p>";
+						//vuelve a setear la variable de sesion "noIngreso" a 0, para que si refresca la pagina no vuelva a aparecer el mismo mensaje
 						$_SESSION["noIngreso"]=0;
 					}
 				?>
@@ -32,5 +39,6 @@
 			</div>
 		</div>
 	</div>
-
+	
+<!-- pie de pagina -->
 <?php include("includes\pie.php"); ?>

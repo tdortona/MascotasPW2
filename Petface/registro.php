@@ -1,7 +1,9 @@
+<!-- se encarga de ver si esta seteada la cookie con el mail del usuario, si lo esta, no permite entrar a esta pagina, devuelve al home -->
 <?php include("includes\cookie.php"); ?>
+<!-- cebezera con hojas de estilo y scripts -->
 <?php include("includes\cabecera.php"); ?>
-	
-	<script src="js/petface.registro.js"></script>
+<!-- script de validaciones del formulario -->	
+<script src="js/petface.registro.js"></script>
 </head>
 <body>
 	<div class="row">
@@ -12,23 +14,29 @@
 		</div>
 		<div class="container">
 			<div class="col-xs-12">
+			<!-- php para verificar si el registro fallo del lado del servidor y regreso a esta pagina -->
 			<?php 
+					//inicia sesion
 					session_start();
+					//verifica si la variable errorTipo esta seteada y si no esta vacia, si lo esta, ingresa al if
 					if (isset($_SESSION["errorTipo"]) and $_SESSION["errorTipo"]!='')
-					{
+					{	
+						//se crea un switch con el error tipo
 						switch ($_SESSION["errorTipo"]) {
+							//si el valor es contraseña muestra el siguiente texto
 							case 'contraseña':
 								echo "<h4 class=\"text-center\">Las contraseñas no coincide, asegurese de que sean iguales</h4> \n";
 								break;
+							//si el valor es mail muestra el siguiente texto
 							case 'mail':
 								echo "<h4 class=\"text-center\">Ya existe un usuario con ese mail, intente con otro</h4> \n";
 								break;
-							
+							//si el valor es cualquier otro muestra el siguiente texto
 							default:
 								echo "<h4 class=\"text-center\">Ha ocurrido un error, vuelva a intentarlo</h4> \n";
 								break;
 						}
-						
+						//vuelve a setear vacia la variable
 						$_SESSION["errorTipo"]='';
 					}
 				?>
@@ -40,31 +48,61 @@
 							
 
 							
-							<input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre y Apellido" required="required" <?php if (isset($_SESSION["nombre"]) and $_SESSION["nombre"]!='') {echo 'value="'.$_SESSION["nombre"].'"'; $_SESSION["nombre"]='';} ?> >
+							<input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre y Apellido" required="required" 
+							<?php
+								//php para es para cuando el registro falla del lado del servidor rellene el campo con los datos que ya estaban puestos por medio de sesion 
+								if (isset($_SESSION["nombre"]) and $_SESSION["nombre"]!='') {echo 'value="'.$_SESSION["nombre"].'"'; $_SESSION["nombre"]='';} 
+							?> 
+							>
 						</div>
 						<div class="form-group">
 							<label for="telefono">Tel&eacute;fono</label>
-							<input type="text" class="form-control" id="telefono" name="telefono" placeholder="Tel&eacute;fono" required="required" <?php if (isset($_SESSION["telefono"]) and $_SESSION["telefono"]!='') {echo 'value="'.$_SESSION["telefono"].'"'; $_SESSION["telefono"]='';} ?> >
+							<input type="text" class="form-control" id="telefono" name="telefono" placeholder="Tel&eacute;fono" required="required" 
+							<?php
+								//php para es para cuando el registro falla del lado del servidor rellene el campo con los datos que ya estaban puestos por medio de sesion 
+								if (isset($_SESSION["telefono"]) and $_SESSION["telefono"]!='') {echo 'value="'.$_SESSION["telefono"].'"'; $_SESSION["telefono"]='';} 
+							?> 
+							>
 						</div>
 						<div class="form-group">
 							<label for="fechaNacimiento">Fecha de nacimiento</label>
-							<input type="text" class="form-control birthdate" id="fechaNacimiento" name="fechaNacimiento" placeholder="Fecha de nacimiento" required="required" <?php if (isset($_SESSION["fechaNacimiento"]) and $_SESSION["fechaNacimiento"]!='') {echo 'value="'.$_SESSION["fechaNacimiento"].'"'; $_SESSION["fechaNacimiento"]='';} ?> >
+							<input type="text" class="form-control birthdate" id="fechaNacimiento" name="fechaNacimiento" placeholder="Fecha de nacimiento" required="required" 
+							<?php
+								//php para es para cuando el registro falla del lado del servidor rellene el campo con los datos que ya estaban puestos por medio de sesion 
+								if (isset($_SESSION["fechaNacimiento"]) and $_SESSION["fechaNacimiento"]!='') {echo 'value="'.$_SESSION["fechaNacimiento"].'"'; $_SESSION["fechaNacimiento"]='';} 
+							?> 
+							>
 						</div>
 						<div class="form-group">
 							<label for="sexo">Sexo</label>
 							<br>
 							<label class="radio-inline">
-								<input type="radio" name="sexo" class="sexo" value="M" <?php if ( !isset($_SESSION["sexo"]) or $_SESSION["sexo"]=='' or $_SESSION["sexo"]=='M') {echo 'checked="checked"'; $_SESSION["sexo"]='';} ?> >M
+								<input type="radio" name="sexo" class="sexo" value="M" 
+								<?php 
+									//php para es para cuando el registro falla del lado del servidor elija el campo con los datos que ya estaban puestos por medio de sesion
+									if ( !isset($_SESSION["sexo"]) or $_SESSION["sexo"]=='' or $_SESSION["sexo"]=='M') {echo 'checked="checked"'; $_SESSION["sexo"]='';} 
+								?> 
+								>M
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="sexo" class="sexo" value="F" <?php if (isset($_SESSION["sexo"]) and $_SESSION["sexo"]=='F') {echo 'checked="checked"'; $_SESSION["sexo"]='';} ?> >F
+								<input type="radio" name="sexo" class="sexo" value="F" 
+								<?php 
+									//php para es para cuando el registro falla del lado del servidor elija el campo con los datos que ya estaban puestos por medio de sesion
+									if (isset($_SESSION["sexo"]) and $_SESSION["sexo"]=='F') {echo 'checked="checked"'; $_SESSION["sexo"]='';} 
+								?> 
+								>F
 							</label>
 						</div>
 					</div>
 					<div class="col-sm-6">
 						<label for="imagen">Imagen</label>
 							<br>
-							<input type="file" class="form-control" id="imagen" name="imagen" placeholder="Imagen" required="required" <?php if (isset($_SESSION["imagen"]) and $_SESSION["imagen"]!='') {echo 'value="'.$_SESSION["imagen"].'"'; $_SESSION["imagen"]='';} ?> >
+							<input type="file" class="form-control" id="imagen" name="imagen" placeholder="Imagen" required="required"
+							<?php 
+								//php para es para cuando el registro falla del lado del servidor rellene el campo con los datos que ya estaban puestos por medio de sesion
+								if (isset($_SESSION["imagen"]) and $_SESSION["imagen"]!='') {echo 'value="'.$_SESSION["imagen"].'"'; $_SESSION["imagen"]='';} 
+							?> 
+							>
 							
 						<div class="form-group">
 							<label for="mail">E-Mail</label>
@@ -88,4 +126,5 @@
 		</div>
 	</div>
 	<br><br><br>
+<!-- pie de pagina -->
 <?php include("includes\pie.php"); ?>

@@ -1,3 +1,4 @@
+<!-- cabecera de todas las paginas -->
 <!DOCTYPE html>
 <html lang="es">
 	<head>
@@ -19,6 +20,7 @@
 		<script src="js/bootstrap.min.js"></script>
 		<script src="js/bootbox.min.js"></script>
 		<script src="js/petface.js"></script>
+    <!-- script de angular para cargas los tipos, las razas y las mascotas -->
 		<script>  
  var app = angular.module("myapp",[]);  
  app.controller("usercontroller", function($scope, $http){  
