@@ -157,9 +157,9 @@ hr {
 }
 
   /* texto del comentario*/
-p { 
+/*p { 
   margin-bottom: 15px; 
-  margin-left: 60px;}
+  margin-left: 60px;}*/
 
 .imagenComentarios{
   margin-left: 58px;
@@ -183,7 +183,7 @@ p {
   border: 1.5px solid #2d2d2d;
   border-radius:3px
   transition:all 500ms ease-in-out;
-  border-radius:4px
+  border-radius:4px;
 }
 
 .list-thumbs > li > a:hover{
@@ -198,4 +198,15 @@ p {
   color: #2d2d2d;
 }
 
- 
+ul
+{
+  list-style-type: none;
+}
+/*.img-responsive{
+  display:block;
+  height: 150px;
+  width: 150px;
+  position: relative;
+  left: 50px;
+  border: 1.5px solid #2d2d2d;
+}*/
