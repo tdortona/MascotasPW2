@@ -9,10 +9,34 @@ hr {
      height:100%;
      width: 35px;
 
-    position: relative;
-    left: 20px;
-    bottom: 300px;
+    position: absolute;
+    left: 230px;
+    bottom: 235px;
  } 
+
+ h4{
+  margin-top: 0px;
+  margin-bottom: 0px;
+ }
+
+ /* márgenes */
+div.well{
+padding-bottom: 0px;
+padding-top: 0px;
+margin-bottom: 0px;
+}
+
+a .dropdown-toggle{
+    margin-top: 0px;
+    padding-bottom: 0px;
+}
+
+/*imagen círculo*/
+.imagen .img-circle{
+  height: 150px; 
+  width: 150px; 
+  text-align: center;
+}
 
 
 .navbar-fixed-left {
@@ -37,7 +61,6 @@ hr {
 
 /* dropdown*/
 .navbar-fixed-left .navbar-nav > li > .dropdown-menu {
-  margin-top: -50px;
   margin-left: 140px;
 }
 
@@ -58,7 +81,7 @@ hr {
     /*nombre mascota*/
 .navbar-brand
 {
-  margin-left: 70px;
+  text-align: center;
   font-size: 38px;
   font-family: 'Shadows Into Light', cursive;
 
@@ -75,7 +98,7 @@ hr {
 
     /*texto*/
 .navbar-inverse .navbar-nav>li>a{
-  color: black; 
+  color: black;
 }
 
 .navbar-inverse .navbar-nav>li>a:focus, .navbar-inverse .navbar-nav>li>a:hover{
@@ -167,6 +190,7 @@ hr {
 
 /*LISTA DE MASCOTAS (mascotas.php)*/
 
+
 .list-thumbs{}
 .list-thumbs > li{
     margin-bottom:12px;
@@ -179,7 +203,7 @@ hr {
   position:relative;
   background-color: #309971;
   color: white;
-  padding: 8px;
+  padding: 20px;
   border: 1.5px solid #2d2d2d;
   border-radius:3px
   transition:all 500ms ease-in-out;
@@ -192,7 +216,8 @@ hr {
 }
     /*texto del nombre*/
 .list-thumbs h2{
-  bottom: 0;
+  margin-bottom: 0;
+  margin-top: 0;
   font-size: 30px;
   text-align: center;
   color: #2d2d2d;
@@ -202,11 +227,10 @@ ul
 {
   list-style-type: none;
 }
-/*.img-responsive{
+.img .img-responsive{
   display:block;
-  height: 150px;
-  width: 150px;
+  height: 120px;
+  width: 180px;
   position: relative;
-  left: 50px;
   border: 1.5px solid #2d2d2d;
-}*/
+}

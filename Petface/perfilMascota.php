@@ -12,38 +12,49 @@
 		<!-- MENU VERTICAL --> 
 
 							<div class="navbar navbar-inverse navbar-fixed-left">
-			    			
-				    			<!-- Nombre Mascota -->
-							    <a class="navbar-brand" href="#">
-							    	<?php echo $nombreMascota; ?>
-								</a>
+								<a class="btn btn-default" href="home.php">
+							      <span class="glyphicon glyphicon-circle-arrow-left"></span>
+							      Volver
+							    </a>
 
+			    				<div class="well">
+				    				<p>
+					    			<!-- Nombre Mascota -->
+									    <a class="navbar-brand" href="#">
+									    	<?php echo $nombreMascota; ?>
+										</a>
+									</p>
+								</div>
+							</br>
 							    <div class="well">
-							        
-							    	<img src="logica/<?php echo $imagenMascota; ?>" class="img-circle" height="150" width="150" alt="Avatar mascota">
-							    	<img src="logica/<?php echo $imagenUsuario2; ?>" class="img-circle" height="70" width="70" alt="Avatar" style="position:absolute; left: 120px; top:150px;">
+							    	<p>
+							        <div class="imagen">
+							    		<img src="logica/<?php echo $imagenMascota; ?>" class="img-circle">
+							    	</div>
+							    	</p>
+							    	<img src="logica/<?php echo $imagenUsuario2; ?>" class="img-circle" height="70" width="70" alt="Avatar" style="position:absolute; left: 130px; top:180px;">
 							    </div>
 										
 						    	<ul class="nav navbar-nav">
 
-							<?php
+									<?php
 
-							    	/* Datos Mascota */
+									    	/* Datos Mascota */
 
-									echo "<li>Dueño: <b>".$nombreUsuario2."</b></li>";
-									echo "<li>Tipo: <b>".$tipo."</b></li>";
-									echo "<li>Raza: <b>".$raza."</b></li>";
-									if ($sexoMascota=="H")
-										{
-											echo "<li>Sexo:<b> Hembra</b></li>";
-										}
-									else
-										{
-											echo "<li>Sexo:<b> Macho</b></li>";
-										}
-									echo "<li>Fecha de nacimiento: <b>".$fechaNacimientoMascota."</b></li>";
-									
-							?>
+											echo "<li>Dueño: <b><a href='home.php'>".$nombreUsuario2."</a></b></li>";
+											echo "<li>Tipo: <b>".$tipo."</b></li>";
+											echo "<li>Raza: <b>".$raza."</b></li>";
+											if ($sexoMascota=="H")
+												{
+													echo "<li>Sexo:<b> Hembra</b></li>";
+												}
+											else
+												{
+													echo "<li>Sexo:<b> Macho</b></li>";
+												}
+											echo "<li>Fecha de nacimiento: <b>".$fechaNacimientoMascota."</b></li>";
+											
+									?>
 								</ul>
 
 								
@@ -54,26 +65,27 @@
 								<!-- Poner en Adopción -->
 								
 								<?php 
-									if ($idEstadoMascota == "1")
-										{	
-											echo "<p>";
-											echo "<form action=logica/confirm_adopcion.php?nombreMascota=".$nombreMascota." method='POST'>";
-											echo "<input type='checkbox' name='enviar' value=".$idMascota."> <b>¡Ponerme en Adopción!</b><br>";
-											echo "<input type='submit' class='btn btn-primary' value='Enviar'>";
-											echo "</form></p>";
-										}
-									if ($idEstadoMascota == "3")
-										{
-										
-											echo "</br>";
-											echo "<h4> Su Mascota está en Adopción </h4>";
-											echo "<form action=logica/confirm_dejarAdopcion.php?nombreMascota=".$nombreMascota." method='POST'>";
-											echo "<input type='checkbox' name='enviar' value=".$idMascota."> <b>¡Salir de Adopción!</b><br>";
-											echo "<input type='submit' class='btn btn-danger' value='Enviar'>";
-											echo "</form>";
-										}
+
+										if ($idEstadoMascota == "1")
+											{	
+												echo "<p>";
+												echo "<form action=logica/confirm_adopcion.php?idMascota=".$idMascota."&nombreMascota=".$nombreMascota." method='POST'>";
+												echo "<input type='checkbox' name='enviar' value=".$idMascota."> <b>¡Ponerme en Adopción!</b><br>";
+												echo "<input type='submit' class='btn btn-primary' value='Enviar'>";
+												echo "</form></p>";
+											}
+										if ($idEstadoMascota == "3")
+											{
+											
+												echo "</br>";
+												echo "<h4> Su Mascota está en Adopción </h4>";
+												echo "<form action=logica/confirm_dejarAdopcion.php?idMascota=".$idMascota."&nombreMascota=".$nombreMascota." method='POST'>";
+												echo "<input type='checkbox' name='enviar' value=".$idMascota."> <b>¡Salir de Adopción!</b><br>";
+												echo "<input type='submit' class='btn btn-danger' value='Enviar'>";
+												echo "</form>";
+											}
 								?>
-								<hr style="left:150px; bottom:720px;">
+								<hr style="position: absolute; left:260px; bottom:720px;">
 							</div>
 							
 		<!-- fin MENU VERTICAL --> 
@@ -88,21 +100,21 @@
 			        <!-- PUBLICACIÓN -->
 
 			     <?php 
-			     $database = new BaseDeDatos();
-			     $mail = $_COOKIE["mail"];
+				     $database = new BaseDeDatos();
+				     $mail = $_COOKIE["mail"];
 
-			     $queryEsMiMascotaONo="select * from mascota inner join usuario on mascota.idUsuario=usuario.id where usuario.mail='$mail' and mascota.id='$idMascota'";
+				     $queryEsMiMascotaONo="select * from mascota inner join usuario on mascota.idUsuario=usuario.id where usuario.mail='$mail' and mascota.id='$idMascota'";
 
-			    $resultado =  $database->ejecutarQuery($queryEsMiMascotaONo) ;
+				    $resultado =  $database->ejecutarQuery($queryEsMiMascotaONo) ;
 
-				if ($resultado->num_rows>0)
-			    {
-			    	include("includes\publicacion.php"); 
-				}
-				else
-				{
-					include("includes\seguirPerfil.php"); 
-				}
+					if ($resultado->num_rows>0)
+				    {
+				    	include("includes\publicacion.php"); 
+					}
+					else
+					{
+						include("includes\seguirPerfil.php"); 
+					}
 				?>
 			      	<!-- MUESTRO LA PUBLICACIÓN -->	
 			      <?php

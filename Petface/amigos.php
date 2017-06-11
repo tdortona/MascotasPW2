@@ -2,9 +2,8 @@
 <?php include("includes\datosUsuario.php"); ?>
 <?php include("includes\cabecera.php"); ?>
 <?php include("includes\\navbar.php"); ?>
+<?php include("includes\menuVertical.php"); ?>
 
-
-	<main>
 		<div class="container">
 			<ul class="list-unstyled list-thumbs row">
 				<?php

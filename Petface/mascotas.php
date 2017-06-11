@@ -3,13 +3,13 @@
 
 <?php include("includes\cabecera.php"); ?>
 <?php include("includes\\navbar.php"); ?>
+<?php include("includes\menuVertical.php"); ?>
 
 <?php
   include_once("logica/clases/BaseDeDatos.php");
   include_once("logica/clases/Usuario.php");
 ?>
 
-	<main>
 		<div class="container">
 			<ul class="list-unstyled list-thumbs row">
 				<?php
@@ -29,7 +29,7 @@
 						echo "<li class='col-lg-3 col-sm-4 col-xs-6'>";
 						echo '<a>'."\n";
 						echo " <h2>".$row["nombre"]."</h2><br> ";
-						?> <img src="logica/<?php echo $row['imagen']; ?>" class="img-responsive">
+						?> <div class="img"> <img src="logica/<?php echo $row['imagen']; ?>" class="img-responsive"> </div>
 						<?php
 
 						echo "Tipo: ".$row["tipo"]."<br>\n";

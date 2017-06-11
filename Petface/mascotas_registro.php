@@ -3,13 +3,11 @@
 <?php include("includes\datosUsuario.php"); ?>
 <?php include("includes\\navbar.php"); ?>
 <script src="js/petface.registro.js"></script>
-</head>
-<body>
 <!--?php include("includes\\navbar.php"); ?-->
 
 <!--br><br><h2 class="text-center">Registro de mascota</h2-->
-	<div class="row">
-		<div class="jumbotron image-bg">
+		
+		<div class="jumbotron image-bg" >
 			<div class="container">
 				<img src="img/logo_nav_blanco.png" alt="PetFace" class="col-xs-12 col-sm-4 col-sm-offset-4">
 			</div>
@@ -68,5 +66,6 @@
 				</form>
 		</div>
 	</div>
+</main>
 </body>
 </html>	
