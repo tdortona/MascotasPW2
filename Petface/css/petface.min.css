@@ -103,6 +103,29 @@ footer > p {
 }
 
 /* ID's */
+#menu-vertical {
+	padding-top: 1em;
+}
+
+#menu-vertical > ul.opciones {
+	text-align: left;
+}
+
+#menu-vertical > ul#detalle-mascota {
+	margin-top: 1.8em;
+	margin-bottom: 1em;
+	padding-left: 1em;
+	box-sizing: border-box;
+}
+
+#menu-vertical > div.imagen {
+	margin-top: 2em;
+}
+
+#menu-vertical > a#btn-volver {
+		position: absolute;
+	left: 1em;
+}
 
 /* MEDIA QUERIES */
 

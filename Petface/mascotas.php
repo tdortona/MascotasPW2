@@ -28,24 +28,25 @@
 						/*$idDueño=$row["id"];*/
 						echo "<li class='col-lg-3 col-sm-4 col-xs-6'>";
 						echo '<a>'."\n";
-						echo " <h2>".$row["nombre"]."</h2><br> ";
+						echo " <h2 class='blanco'>".$row["nombre"]."</h2><br> ";
 						?> <div class="img"> <img src="logica/<?php echo $row['imagen']; ?>" class="img-responsive"> </div>
 						<?php
-
-						echo "Tipo: ".$row["tipo"]."<br>\n";
-						echo "Raza: ".$row["raza"]."<br>\n";
+						echo "<br>";
+						echo "<strong>Tipo:</strong> ".$row["tipo"]."<br>\n";
+						echo "<strong>Raza:</strong> ".$row["raza"]."<br>\n";
 						if ($row["sexo"]=="H")
 						{
 							echo "Sexo: Hembra<br>\n";
 						}
 						else
 						{
-							echo "Sexo: Macho<br>\n";
+							echo "<strong>Sexo:</strong> Macho<br>\n";
 						}
-						echo "Fecha de Nacimiento: ".$row["fechaNacimiento"]."<br>\n";
+						echo "<strong>Fecha de Nacimiento:</strong> ".$row["fechaNacimiento"]."<br>\n";
 						echo
 						'<form action="perfilMascota.php" method="GET" enctype="multipart/form-data">
 							<input type="hidden" name="nombreMascota" value="'.$row["id"].'">
+						<br>
 						<input type="submit" class="btn btn-primary" value="Ir al perfil"></input>
 				
 			</form>';
@@ -59,9 +60,7 @@
 				?>
 			</ul>
 			<form action="mascotas_registro.php" method="get" enctype="multipart/form-data">
-				
-				<input type="submit" class="btn btn-primary" value="Registrar Mascota"></input>
-				
+				<input type="submit" class="btn btn-success" value="Registrar Mascota"></input>
 			</form>
 		</div>
 	</main>

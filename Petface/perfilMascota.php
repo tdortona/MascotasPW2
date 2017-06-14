@@ -11,12 +11,12 @@
 	<main>
 		<!-- MENU VERTICAL --> 
 
-							<div class="navbar navbar-inverse navbar-fixed-left">
-								<a class="btn btn-default" href="home.php">
+							<div class="navbar navbar-inverse navbar-fixed-left text-center" id="menu-vertical">
+								<a class="btn btn-default" href="home.php" id="btn-volver">
 							      <span class="glyphicon glyphicon-circle-arrow-left"></span>
 							      Volver
 							    </a>
-
+							    <br>
 			    				<div class="well">
 				    				<p>
 					    			<!-- Nombre Mascota -->
@@ -32,17 +32,17 @@
 							    		<img src="logica/<?php echo $imagenMascota; ?>" class="img-circle">
 							    	</div>
 							    	</p>
-							    	<img src="logica/<?php echo $imagenUsuario2; ?>" class="img-circle" height="70" width="70" alt="Avatar" style="position:absolute; left: 130px; top:180px;">
+							    	<img src="logica/<?php echo $imagenUsuario2; ?>" class="img-circle" height="70" width="70" alt="Avatar" style="position:absolute; left: 130px; top:200px;">
 							    </div>
 										
-						    	<ul class="nav navbar-nav">
+						    	<ul class="nav navbar-nav opciones" id="detalle-mascota">
 
 									<?php
 
 									    	/* Datos Mascota */
 
 											echo "<li>Dueño: <b><a href='home.php'>".$nombreUsuario2."</a></b></li>";
-											echo "<li>Tipo: <b>".$tipo."</b></li>";
+											echo "<li>Especie: <b>".$tipo."</b></li>";
 											echo "<li>Raza: <b>".$raza."</b></li>";
 											if ($sexoMascota=="H")
 												{
@@ -56,12 +56,6 @@
 											
 									?>
 								</ul>
-
-								
-								<form action="mascotas_registro.php" method="POST">
-									<input type="submit" class="btn btn-primary" value="Registrar Mascota"></input>
-								</form>	
-
 								<!-- Poner en Adopción -->
 								
 								<?php 

@@ -2,8 +2,8 @@
 		
 
 		<main>
-				<div class="navbar navbar-inverse navbar-fixed-left">
-					<a class="btn btn-default" href="home.php">
+				<div class="navbar navbar-inverse navbar-fixed-left text-center" id="menu-vertical">
+					<a class="btn btn-default" href="home.php" id="btn-volver">
 				      <span class="glyphicon glyphicon-circle-arrow-left"></span>
 				      Volver
 				    </a>
@@ -22,7 +22,7 @@
 						</p>
 					</div>
 
-				    <ul class="nav navbar-nav">
+				    <ul class="nav navbar-nav opciones">
 				    		<li class="dropdown">
 					    		<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 					    			Mascotas <span class="caret"></span>
