@@ -31,11 +31,9 @@
 				</form>
 				<br>
 				<p class="text-center">¿No tienes cuenta? Registrate haciendo <a href="registro.php">click aquí.</a></p>
-				<br>
-				<p>
-					<?php /* Link a la página de login*/
-						echo '<a href="' . htmlspecialchars($loginUrl) . '">Login con Facebook!</a>';
-					?>
+				<p class="text-center">
+					<a href="<?php echo htmlspecialchars($loginUrl); ?>" class="btn btn-primary">Ingresar con Facebook</a>
+					<a href="#" class="btn btn-danger">Ingresar con Google</a>
 				</p>
 			</div>
 		</div>
