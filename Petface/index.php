@@ -32,8 +32,12 @@
 				<br>
 				<p class="text-center">¿No tienes cuenta? Registrate haciendo <a href="registro.php">click aquí.</a></p>
 				<p class="text-center">
-					<a href="<?php echo htmlspecialchars($loginUrl); ?>" class="btn btn-primary">Ingresar con Facebook</a>
-					<a href="#" class="btn btn-danger">Ingresar con Google</a>
+					<a href="<?php echo htmlspecialchars($loginUrl); ?>" class="btn btn-primary">
+						<i class="fa fa-facebook" aria-hidden="true"></i>
+					</a>
+					<a href="#" class="btn btn-danger">
+						<i class="fa fa-google" aria-hidden="true"></i>
+					</a>
 				</p>
 			</div>
 		</div>

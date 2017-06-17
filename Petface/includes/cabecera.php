@@ -12,6 +12,8 @@
 	<link rel="stylesheet" href="css/jquery-ui.theme.min.css">
 	<link rel="stylesheet" href="css/petface.min.css">
 	<link rel="stylesheet" href="css/style.css" type="text/css">
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+
 	<link href="https://fonts.googleapis.com/css?family=Shadows+Into+Light" rel="stylesheet">
 
 	<script src="js/angular.min.js"></script> 
