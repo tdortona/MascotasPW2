@@ -16,8 +16,4 @@
 
 	$permissions = ['email']; // Permisos opcionales
 	$loginUrl = $helper->getLoginUrl('http://localhost/Petface/facebook-login/fb-callback.php', $permissions);
-
-	/* Link a la página de login*/
-	echo '<a href="' . htmlspecialchars($loginUrl) . '">Login con Facebook!</a>';
-
 ?>

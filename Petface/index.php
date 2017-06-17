@@ -1,5 +1,6 @@
 <?php include("includes\cookie.php"); ?>
 <?php include("includes\cabecera.php"); ?>
+	<?php require_once("login-facebook.php"); ?>
 
 </head>
 <body>
@@ -9,7 +10,7 @@
 				<img src="img/logo_nav.png" alt="PetFace" class="img img-responsive">
 				<br>
 				<?php 
-					session_start();
+					// session_start();
 					if (isset($_SESSION["noIngreso"]) and $_SESSION["noIngreso"]==1)
 					{
 						echo "<p>El E-mail o contraseña son incorrectos. Por favor, re-ingreselos</p>";
@@ -30,6 +31,12 @@
 				</form>
 				<br>
 				<p class="text-center">¿No tienes cuenta? Registrate haciendo <a href="registro.php">click aquí.</a></p>
+				<br>
+				<p>
+					<?php /* Link a la página de login*/
+						echo '<a href="' . htmlspecialchars($loginUrl) . '">Login con Facebook!</a>';
+					?>
+				</p>
 			</div>
 		</div>
 	</div>
