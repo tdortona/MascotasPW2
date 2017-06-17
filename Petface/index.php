@@ -1,6 +1,6 @@
 <?php include("includes\cookie.php"); ?>
 <?php include("includes\cabecera.php"); ?>
-	<?php require_once("login-facebook.php"); ?>
+<?php require_once("login-facebook.php"); ?>
 
 </head>
 <body>
@@ -32,10 +32,10 @@
 				<br>
 				<p class="text-center">¿No tienes cuenta? Registrate haciendo <a href="registro.php">click aquí.</a></p>
 				<p class="text-center">
-					<a href="<?php echo htmlspecialchars($loginUrl); ?>" class="btn btn-primary">
+					<a href="<?php echo htmlspecialchars($loginUrl); ?>" class="btn btn-default btn-social btn-facebook">
 						<i class="fa fa-facebook" aria-hidden="true"></i>
 					</a>
-					<a href="#" class="btn btn-danger">
+					<a href="#" class="btn btn-default btn-social btn-google">
 						<i class="fa fa-google" aria-hidden="true"></i>
 					</a>
 				</p>
