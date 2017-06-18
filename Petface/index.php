@@ -1,5 +1,6 @@
 <?php include("includes\cookie.php"); ?>
 <?php include("includes\cabecera.php"); ?>
+<?php require_once("facebook\init.php"); ?>
 
 </head>
 <body>
@@ -31,7 +32,7 @@
 				<br>
 				<p class="text-center">¿No tienes cuenta? Registrate haciendo <a href="registro.php">click aquí.</a></p>
 				<p class="text-center">
-					<a href="#" class="btn btn-primary btn-social btn-facebook">
+					<a href="<?php echo $fbAuth->getAuthUrl(); ?>" class="btn btn-primary btn-social btn-facebook">
 						<i class="fa fa-facebook" aria-hidden="true"></i>
 					</a>
 					<a href="#" class="btn btn-danger btn-social btn-google">
