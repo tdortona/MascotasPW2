@@ -162,7 +162,47 @@
 											echo "</li>";
 											
 											?>
-												<div class="form-group botones">
+											<?php
+												switch($idTipo){
+													case 1:
+														echo "	<div class='form-group botones'>
+																	<button class='btn btn-primary boton' type='submit'>
+																		<span class='glyphicon glyphicon-thumbs-up'></span>
+																		¡Guau!
+																	</button>
+																	<button class='btn btn-primary boton' type='submit'>
+																		<span class='glyphicon glyphicon-thumbs-down'></span>
+																		No guau
+																	</button>
+																</div>";
+													break;
+													case 2:
+														echo "	<div class='form-group botones'>
+																	<button class='btn btn-primary boton' type='submit'>
+																		<span class='glyphicon glyphicon-thumbs-up'></span>
+																		¡Miau!
+																	</button>
+																	<button class='btn btn-primary boton' type='submit'>
+																		<span class='glyphicon glyphicon-thumbs-down'></span>
+																		No miau
+																	</button>
+																</div>";
+													break;
+													case 3:
+														echo "	<div class='form-group botones'>
+																	<button class='btn btn-primary boton' type='submit'>
+																		<span class='glyphicon glyphicon-thumbs-up'></span>
+																		¡Pio!
+																	</button>
+																	<button class='btn btn-primary boton' type='submit'>
+																		<span class='glyphicon glyphicon-thumbs-down'></span>
+																		No pio
+																	</button>
+																</div>";
+													break;
+												}
+											?>
+												<!-- <div class="form-group botones">
 									                <button class="btn btn-primary boton" type="submit">
 									                    <span class="glyphicon glyphicon-thumbs-up"></span>
 									                    Me gusta
@@ -171,7 +211,7 @@
 									                    <span class="glyphicon glyphicon-thumbs-down"></span>
 									                    No me gusta
 									                </button>
-									            </div>
+									            </div> -->
 											
 											<?php
 											

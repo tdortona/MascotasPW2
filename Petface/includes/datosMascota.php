@@ -6,7 +6,7 @@
   $auxiliar=$_GET['nombreMascota'];
   $database = new BaseDeDatos();
 
-  $queryDatosMascota= "select mascota.id as idMascota, mascota.nombre as nombreMascota, mascota.imagen as imagenMascota, mascota.idEstado as idEstadoMascota, tipo.tipo as tipo, raza.raza as raza, mascota.fechaNacimiento as fechaNacimientoMascota, mascota.sexo as sexoMascota, usuario.nombre as nombreUsuario, usuario.imagen as imagenUsuario from mascota inner join usuario on mascota.idUsuario=usuario.id inner join tipo on mascota.idTipo=tipo.id inner join raza on mascota.idRaza=raza.id where mascota.id='$auxiliar'";
+  $queryDatosMascota= "select mascota.id as idMascota, mascota.nombre as nombreMascota, mascota.imagen as imagenMascota, mascota.idEstado as idEstadoMascota, tipo.tipo as tipo, raza.raza as raza, mascota.fechaNacimiento as fechaNacimientoMascota, mascota.sexo as sexoMascota, usuario.nombre as nombreUsuario, usuario.imagen as imagenUsuario, mascota.idTipo as idTipo from mascota inner join usuario on mascota.idUsuario=usuario.id inner join tipo on mascota.idTipo=tipo.id inner join raza on mascota.idRaza=raza.id where mascota.id='$auxiliar'";
 
   $resultado =  $database->ejecutarQuery($queryDatosMascota) ;
 
@@ -24,7 +24,7 @@
       $sexoMascota=$fila["sexoMascota"];
       $nombreUsuario2=$fila["nombreUsuario"];
       $imagenUsuario2=$fila["imagenUsuario"];
-
+	  $idTipo=$fila["idTipo"];
     }
   }
         
