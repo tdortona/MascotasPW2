@@ -50,6 +50,20 @@
       }   
  });  
 
+
+
+$(function(){
+$('#estado_cambio').on('change',function(){
+  var idm = $('#idm').val();
+  var url=$(this).val();
+  if (url!=""){
+    window.location='cambiarEstado.php?id='+url+'&idm='+idm;
+  }
+  return false;
+});
+});
+
+
 /* PONER EN ADOPCIÓN */
 
 $(document).ready(function() {

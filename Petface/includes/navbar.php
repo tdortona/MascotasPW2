@@ -1,5 +1,6 @@
+<!-- barra de navegacion del sitio -->
 <?php
-	
+	//vuelve a setear la cookie con el mail del usaurio activo recuperado del include datosUsuario.php
 	setcookie("mail",$mail,time()+1728000,"/");
 ?>
 <nav class="navbar navbar-default navbar-fixed-top" style="background-image: linear-gradient(90deg, #309971, #2d2d2d); color: white; font-size: 20px;">
@@ -21,12 +22,12 @@
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav navbar-right">
 				<li>
-					<form class="navbar-form navbar-right" role="search">
+					<form class="navbar-form navbar-right" role="search" action="busqueda.php" method="GET">
 			        <div class="form-group input-group">
-			          <input type="text" class="form-control" placeholder="Buscar..">
+			          <input name="busqueda" type="text" class="form-control" placeholder="Escriba aquí o click ->">
 			          <span class="input-group-btn">
-			            <button class="btn btn-default" type="button">
-			              <span class="glyphicon glyphicon-search"></span>
+			            <button class="btn btn-default" type="submit">
+			              Buscar
 			            </button>
 			          </span>        
 			        </div>
@@ -35,7 +36,7 @@
 				<li><a href="home.php">Inicio</a></li>
 				<li><a href="mascotas.php">Mis mascotas</a></li>
 				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> <?php echo $nombreUsuario ?> <span class="caret"></span></a>
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> <?php /* nombre del usuario definido en el include datosUsuario.php */ echo $nombreUsuario ?> <span class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a href="#">Accion 1</a></li>
 						<li><a href="#">Configuración</a></li>

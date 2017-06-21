@@ -234,3 +234,33 @@ ul
   position: relative;
   border: 1.5px solid #2d2d2d;
 }
+
+/*perfilQR*/
+
+.social-btn-holder{
+  padding:10px;
+  margin-top:5px;
+  margin-bottom:5px;
+}
+.social-btn-holder .btn-social{
+  font-size:12px;
+  font-weight:bold;
+}
+
+.btn-social{
+  color: white;
+  opacity:0.9;
+}
+.btn-social:hover {
+  color: white;
+  opacity:1;
+}
+
+.centered-text{
+   text-align: center;
+}
+
+.panel-footer{
+    border: 2px solid #2D3E50;
+    border-top: transparent;
+}

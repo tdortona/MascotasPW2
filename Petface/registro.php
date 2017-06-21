@@ -1,7 +1,7 @@
 <?php include("includes\cookie.php"); ?>
 <?php include("includes\cabecera.php"); ?>
 	
-	 <!--<script src="js/petface.registro.js"></script> -->
+	 <script src="js/petface.registro.js"></script>
 </head>
 <body>
 	<div class="row">

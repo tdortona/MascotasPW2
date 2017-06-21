@@ -11,7 +11,7 @@
 			              
 			              <!-- Comentarios -->
 			              <textarea class="form-control" rows="2" placeholder="¡Comentario acá..!" id="texto" name="texto" required="required"></textarea>
-			              <input type="hidden" name="idMascota" value="<?php echo $idMascota; ?>">
+			              <input type="hidden" name="idMascota" value="<?php /*id de la mascota definida en el include datosMascota.php*/ echo $idMascota; ?>">
 			              <br />
 			              <div class="form-group botones">
 			                <button class="btn btn-default boton btn-lg" type="submit">

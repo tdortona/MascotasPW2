@@ -3,10 +3,53 @@
 
 		<main>
 				<div class="navbar navbar-inverse navbar-fixed-left text-center" id="menu-vertical">
-					<a class="btn btn-default" href="home.php" id="btn-volver">
-				      <span class="glyphicon glyphicon-circle-arrow-left"></span>
-				      Volver
-				    </a>
+				<?php
+				
+				if (basename($_SERVER['PHP_SELF'])!='home.php')
+				{
+					echo'
+						<a class="btn btn-default" href="home.php" id="btn-volver">
+					      <span class="glyphicon glyphicon-circle-arrow-left"></span>
+					      Inicio
+					    </a>';
+				}
+				?>
+				  <!-- MENSAJES -->
+ 
+                <?php
+                $database = new BaseDeDatos();
+                $queryVerMensajes = "SELECT * FROM usuario WHERE mail= '$mail'";
+                $resultado =  $database->ejecutarQuery($queryVerMensajes) ;
+ 
+                if ($resultado->num_rows>0)  
+                {
+                    while($row = $resultado->fetch_assoc())  
+                    {
+                        if ($row["mensaje"] == 1)
+                        {
+                            echo '<a class="btn btn-success" href="mensaje.php" style="position: relative; left:30px;">
+                              <span class="glyphicon glyphicon-envelope"></span>
+                              Mensajes
+                                 </a>';
+                        }
+                        else {
+                            echo '<a class="btn btn-default" href="mensaje.php" style="position: relative; left:30px;">
+                              <span class="glyphicon glyphicon-envelope"></span>
+                              Mensajes
+                                 </a>';
+                        }
+                    }           
+                } 
+                else{
+                    echo '<a class="btn btn-default" href="mensaje.php">
+                              <span class="glyphicon glyphicon-envelope"></span>
+                              Mensajes
+                                 </a>';
+                }   
+                
+                ?>
+ 
+                <!-- ----------- -->
 				</br>
 					<div class="well">
 						<p>
@@ -70,7 +113,7 @@
 					        <li><a href="#">Sub Menu5</a></li>
 					       </ul>
 					     </li>
-				    	
+				    	 <li><a href="amigos.php">Mascotas que sigo</a></li>
 					     <li><a href="misMascotaEnAdopcion.php">Adopción</a></li>
 					     <li><a href="#">Solos & Solas</a></li>
 					     <li><a href="#">Cachorros</a></li>
