@@ -1,6 +1,8 @@
 <?php include("includes\cookie.php"); ?>
 <?php include("includes\cabecera.php"); ?>
+<?php require_once("vendor\autoload.php"); ?>
 <?php require_once("facebook\init.php"); ?>
+<?php require_once("google\init.php"); ?>
 
 </head>
 <body>
@@ -35,7 +37,7 @@
 					<a href="<?php echo $fbAuth->getAuthUrl(); ?>" class="btn btn-primary btn-social btn-facebook">
 						<i class="fa fa-facebook" aria-hidden="true"></i>
 					</a>
-					<a href="#" class="btn btn-danger btn-social btn-google">
+					<a href="<?php echo $googleAuth->getAuthUrl(); ?>" class="btn btn-danger btn-social btn-google">
 						<i class="fa fa-google" aria-hidden="true"></i>
 					</a>
 				</p>
