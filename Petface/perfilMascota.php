@@ -89,8 +89,18 @@
 			<!-- CUERPO -->
 			
 			  <section id="main-content" >
-			        
-
+			  <!-- IMPRIMIR PERFIL EN PDF -->
+				  <div class="col-sm-10" >
+						<form action="exportarPDF.php"  method="post">
+							<input type="hidden" name="nombreMascota" value="<?php echo $nombreMascota; ?>">
+							<input type="hidden" name="owner" value="<?php echo $nombreUsuario2; ?>">
+							<input type="hidden" name="especie" value="<?php echo $tipo; ?>">
+							<input type="hidden" name="raza" value="<?php echo $raza; ?>">
+							<input type="hidden" name="sexo" value="<?php echo $sexoMascota; ?>">
+							<input type="hidden" name="fnac" value="<?php echo $fechaNacimientoMascota; ?>">
+							<input class="btn btn-primary boton" type="submit" value="Exportar a PDF">
+						</form>
+				  </div>			        										
 			        <!-- PUBLICACIÓN -->
 
 			     <?php 
@@ -241,3 +251,18 @@
 	<br><br><br>
 	
 <?php include("includes\pie.php"); ?>
+
+<script>
+function myFunction(){
+	alert("AAAAAAAAAA");
+	
+	$.ajax({
+		type: "POST",
+		url: "exportarPDF.php",
+		data: {}
+	}).done(function( msg ) {
+		alert( "Data Saved: " + msg );
+		$("#prueba").html(msg);
+	});
+}
+</script>

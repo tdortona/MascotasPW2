@@ -40,7 +40,7 @@
 												while($row = $resultado->fetch_assoc())  
 											    {	
 											 		echo "<li>";
-												    echo 	'<a href="' . htmlspecialchars("/Petface/perfilMascota.php?nombreMascota=" .$row["id"]) . '">'."\n";
+												    echo 	'<a href="' . htmlspecialchars("perfilMascota.php?nombreMascota=" .$row["id"]) . '">'."\n";
 													echo 	"<h4>".$row["nombre"]."</h4> </a>";
 													echo "</li>" ;
 												}
