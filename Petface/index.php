@@ -37,9 +37,9 @@
 					<a href="<?php echo $fbAuth->getAuthUrl(); ?>" class="btn btn-primary btn-social btn-facebook">
 						<i class="fa fa-facebook" aria-hidden="true"></i>
 					</a>
-					<a href="<?php echo $googleAuth->getAuthUrl(); ?>" class="btn btn-danger btn-social btn-google">
+					<!-- <a href="<?php echo $googleAuth->getAuthUrl(); ?>" class="btn btn-danger btn-social btn-google">
 						<i class="fa fa-google" aria-hidden="true"></i>
-					</a>
+					</a> -->
 				</p>
 			</div>
 		</div>
