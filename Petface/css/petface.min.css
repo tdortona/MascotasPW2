@@ -39,6 +39,33 @@ footer > p {
 	color: #ffffff;
 }
 
+.btn-social,
+.btn-default:active,
+.btn-default:focus,
+.btn-default:hover {
+	color: #ffffff;
+}
+
+.btn-facebook {
+	background-color: #3b5998;
+}
+
+.btn-facebook:active,
+.btn-facebook:focus,
+.btn-facebook:hover {
+	background-color: #2B3E65;
+}
+
+.btn-google {
+	background-color: #d62d20;
+}
+
+.btn-google:active,
+.btn-google:focus,
+.btn-google:hover {
+	background-color: #b4281d;
+}
+
 .full-height {
 	min-height: 100vh;
 }
@@ -53,7 +80,7 @@ footer > p {
 }
 
 .login-form {
-	margin-top: 40px;
+	margin-top: 20px;
 	background-color: #ffffff;
 	padding: 20px;
 	box-sizing: border-box;

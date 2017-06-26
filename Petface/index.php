@@ -1,5 +1,8 @@
 <?php include("includes\cookie.php"); ?>
 <?php include("includes\cabecera.php"); ?>
+<?php require_once("vendor\autoload.php"); ?>
+<?php require_once("facebook\init.php"); ?>
+<?php require_once("google\init.php"); ?>
 
 </head>
 <body>
@@ -9,7 +12,7 @@
 				<img src="img/logo_nav.png" alt="PetFace" class="img img-responsive">
 				<br>
 				<?php 
-					session_start();
+					// session_start();
 					if (isset($_SESSION["noIngreso"]) and $_SESSION["noIngreso"]==1)
 					{
 						echo "<p>El E-mail o contraseña son incorrectos. Por favor, re-ingreselos</p>";
@@ -30,6 +33,14 @@
 				</form>
 				<br>
 				<p class="text-center">¿No tienes cuenta? Registrate haciendo <a href="registro.php">click aquí.</a></p>
+				<p class="text-center">
+					<a href="<?php echo $fbAuth->getAuthUrl(); ?>" class="btn btn-primary btn-social btn-facebook">
+						<i class="fa fa-facebook" aria-hidden="true"></i>
+					</a>
+					<!-- <a href="<?php echo $googleAuth->getAuthUrl(); ?>" class="btn btn-danger btn-social btn-google">
+						<i class="fa fa-google" aria-hidden="true"></i>
+					</a> -->
+				</p>
 			</div>
 		</div>
 	</div>
