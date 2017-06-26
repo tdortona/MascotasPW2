@@ -98,6 +98,8 @@
 							<input type="hidden" name="raza" value="<?php echo $raza; ?>">
 							<input type="hidden" name="sexo" value="<?php echo $sexoMascota; ?>">
 							<input type="hidden" name="fnac" value="<?php echo $fechaNacimientoMascota; ?>">
+							<input type="hidden" name="fotoMascota" value="logica/<?php echo $imagenMascota; ?>">
+							<input type="hidden" name="fotoUsuario" value="logica/<?php echo $imagenUsuario2; ?>">
 							<input class="btn btn-primary boton" type="submit" value="Exportar a PDF">
 						</form>
 				  </div>			        										

@@ -14,17 +14,38 @@ $sexo = $_POST['sexo'] == "H" ? "Hembra" : "Macho";
 $html='
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Perfil de Mascota: '.$_POST['nombreMascota'].'</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Perfil de Mascota: '.$_POST['nombreMascota'].'</title>
+	<link rel="icon" href="img/petface_icon.ico"/>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/jquery-ui.min.css">
+	<link rel="stylesheet" href="css/jquery-ui.theme.min.css">
+	<link rel="stylesheet" href="css/petface.min.css">
+	<link rel="stylesheet" href="css/style.css" type="text/css">
+	<link href="https://fonts.googleapis.com/css?family=Shadows+Into+Light" rel="stylesheet">
+	<script src="js/angular.min.js"></script> 
+	<script src="js/jquery.min.js"></script>
+	<script src="js/jquery-ui.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/bootbox.min.js"></script>
+	<script src="js/petface.js"></script>
 </head>
 <body>
-<h1>Perfil de Mascota:</h1>
-<p>Nombre: '.$_POST['nombreMascota'].'</p>
-<p>Dueño: '.$_POST['owner'].'</p>
-<p>Especie: '.$_POST['especie'].'</p>
-<p>Raza: '.$_POST['raza'].'</p>
-<p>Sexo: '.$sexo.'</p>
-<p>Fecha de nacimiento: '.$_POST['fnac'].'</p>
+	<h1>Perfil de Mascota:</h1>
+	<p><b>Nombre:</b> '.$_POST['nombreMascota'].'</p>
+	<p><b>Dueño:</b> '.$_POST['owner'].'</p>
+	<p><b>Especie:</b> '.$_POST['especie'].'</p>
+	<p><b>Raza:</b> '.$_POST['raza'].'</p>
+	<p><b>Sexo:</b> '.$sexo.'</p>
+	<p><b>Fecha de nacimiento:</b> '.$_POST['fnac'].'</p>
+	<div class="well">
+		<p>
+		<div class="imagen">
+			<img src="'.$_POST['fotoMascota'].'" class="img-circle" style="position:absolute; left: 400px; top: 40px;">
+		</div>
+		</p>
+		<img src="'.$_POST['fotoUsuario'].'" class="img-circle" height="70" width="70" alt="Avatar" style="position:absolute; left: 500px; top:160px;">
+	</div>
 </body>
 </html>';
 
@@ -34,7 +55,7 @@ $pdf = new DOMPDF();
 $pdf ->set_paper("A4", "portrait");
 
 # Cargamos el contenido HTML.
-$pdf ->load_html(utf8_decode($html));
+$pdf ->load_html(html_entity_decode(htmlentities($html)));
 
 # Renderizamos el documento PDF.
 $pdf ->render();
