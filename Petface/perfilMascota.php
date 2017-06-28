@@ -240,6 +240,7 @@
 <script>
 function meGusta(idPublicacion, idUsuario, idMascota){
 	$("#noMeGusta"+idPublicacion+"").hide();
+	$("#meGusta"+idPublicacion+"").prop('disabled', true);
 	mostrarTextAreaDeComentario(idPublicacion);
 	$.ajax({
 	  type: "POST",
@@ -256,6 +257,7 @@ function meGusta(idPublicacion, idUsuario, idMascota){
 
 function noMeGusta(idPublicacion, idUsuario, idMascota){
 	$("#meGusta"+idPublicacion+"").hide();
+	$("#noMeGusta"+idPublicacion+"").prop('disabled', true);
 	mostrarTextAreaDeComentario(idPublicacion);
 	$.ajax({
 	  type: "POST",
