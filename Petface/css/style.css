@@ -234,3 +234,6 @@ ul
   position: relative;
   border: 1.5px solid #2d2d2d;
 }
+textarea {
+    resize: none;
+}

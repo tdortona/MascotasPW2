@@ -106,10 +106,10 @@
 			        <!-- PUBLICACIÓN -->
 
 			     <?php 
-				     $database = new BaseDeDatos();
-				     $mail = $_COOKIE["mail"];
+				    $database = new BaseDeDatos();
+				    $mail = $_COOKIE["mail"];
 
-				     $queryEsMiMascotaONo="select * from mascota inner join usuario on mascota.idUsuario=usuario.id where usuario.mail='$mail' and mascota.id='$idMascota'";
+				    $queryEsMiMascotaONo="select * from mascota inner join usuario on mascota.idUsuario=usuario.id where usuario.mail='$mail' and mascota.id='$idMascota'";
 
 				    $resultado =  $database->ejecutarQuery($queryEsMiMascotaONo) ;
 
@@ -123,127 +123,110 @@
 					}
 				?>
 			      	<!-- MUESTRO LA PUBLICACIÓN -->	
-			      <?php
+				<?php
 					$mail = $_COOKIE["mail"];
 					$database = new BaseDeDatos();
 					
-					$queryPublicacionesDelPerfil= "SELECT texto as texto, pathImagen as imagenPublicacion, pathVideo as videoPublicacion FROM publicacion where idMascota= '$idMascota' ORDER BY fechaPublicacion DESC";
+					$queryPublicacionesDelPerfil= "SELECT texto as texto, pathImagen as imagenPublicacion, pathVideo as videoPublicacion, id as idPublicacion FROM publicacion where idMascota= '$idMascota' ORDER BY fechaPublicacion DESC";
 
 					$resultado =  $database->ejecutarQuery($queryPublicacionesDelPerfil) ;
 					
 					echo "<ul>";
 					if ($resultado->num_rows>=0) 
-									{
-										while($fila = $resultado->fetch_assoc())   
-									    {	
-									    	echo "<li>";
-
-										    	echo "<div class='row'>";
-										    	
-											    	echo "<div class='col-sm-4'>";
-					            						echo "<div class='imgComent'>";
-															echo "<img src='logica/".$imagenMascota."' class='img-circle' height='55' width='55' alt='Avatar'>";
-															echo $nombreMascota;
-														echo "</div>";
-													echo "</div>";
-												echo "</div>";
-												
-												echo "<div class='container'>";
-													echo "<ul class='list-unstyled list-thumbs row'>";
-													
-															echo "<p>".$fila["texto"]."</p>";
-															if ($fila["imagenPublicacion"]!="")
-															{	echo	"<li class='col-lg-3 col-sm-4 col-xs-6'>";
-																echo "<img src='logica/".$fila["imagenPublicacion"]."' height='230' width='230' class='imagenComentarios' alt='Avatar'>";
-																echo	"</li>";
-															}
-
-													
-															if ($fila["videoPublicacion"]!="")
-															{	
-																
-																echo	"<li class='col-lg-3 col-sm-4 col-xs-6'>";
-																echo "<video src='logica/".$fila["videoPublicacion"]."' alt='".$fila['videoPublicacion']."' controls poster='img/logo.png' width='400' height='240' border: 2px solid black;>";
-																echo "</video>";
-																echo	"</li>";
-																
-															}
-													echo "</ul>";
-												echo "</div>";
-
-											echo "</li>";
-											
-											?>
-											<?php
-												switch($idTipo){
-													case 1:
-														echo "	<div class='form-group botones'>
-																	<button class='btn btn-primary boton' type='submit'>
-																		<span class='glyphicon glyphicon-thumbs-up'></span>
-																		¡Guau!
-																	</button>
-																	<button class='btn btn-primary boton' type='submit'>
-																		<span class='glyphicon glyphicon-thumbs-down'></span>
-																		No guau
-																	</button>
-																</div>";
-													break;
-													case 2:
-														echo "	<div class='form-group botones'>
-																	<button class='btn btn-primary boton' type='submit'>
-																		<span class='glyphicon glyphicon-thumbs-up'></span>
-																		¡Miau!
-																	</button>
-																	<button class='btn btn-primary boton' type='submit'>
-																		<span class='glyphicon glyphicon-thumbs-down'></span>
-																		No miau
-																	</button>
-																</div>";
-													break;
-													case 3:
-														echo "	<div class='form-group botones'>
-																	<button class='btn btn-primary boton' type='submit'>
-																		<span class='glyphicon glyphicon-thumbs-up'></span>
-																		¡Pio!
-																	</button>
-																	<button class='btn btn-primary boton' type='submit'>
-																		<span class='glyphicon glyphicon-thumbs-down'></span>
-																		No pio
-																	</button>
-																</div>";
-													break;
-												}
-											?>
-												<!-- <div class="form-group botones">
-									                <button class="btn btn-primary boton" type="submit">
-									                    <span class="glyphicon glyphicon-thumbs-up"></span>
-									                    Me gusta
-									                </button>
-									                <button class="btn btn-primary boton" type="submit">
-									                    <span class="glyphicon glyphicon-thumbs-down"></span>
-									                    No me gusta
-									                </button>
-									            </div> -->
-											
-											<?php
-											
-											echo "------------------------------------------------------------------------------------------------------------------------------";
-										
-									
-											
-
-
+					{
+						while($fila = $resultado->fetch_assoc())   
+						{												
+							echo "<li>";
+								echo "<div class='row'>";								
+									echo "<div class='col-sm-4'>";
+										echo "<div class='imgComent'>";
+											echo "<img src='logica/".$imagenMascota."' class='img-circle' height='55' width='55' alt='Avatar'>";
+											echo $nombreMascota;
+										echo "</div>";
+									echo "</div>";
+								echo "</div>";
+								
+								echo "<div class='container'>";
+									echo "<ul class='list-unstyled list-thumbs row'>";									
+										echo "<p>".$fila["texto"]."</p>";
+										if ($fila["imagenPublicacion"]!="")
+										{	echo	"<li class='col-lg-3 col-sm-4 col-xs-6'>";
+											echo "<img src='logica/".$fila["imagenPublicacion"]."' height='230' width='230' class='imagenComentarios' alt='Avatar'>";
+											echo	"</li>";
 										}
-									}
-									else
-									{
-										echo "<h4>Esta mascota no ha hecho ninguna publicacion aun</h4>";
-									}
+								
+										if ($fila["videoPublicacion"]!="")
+										{	
+											
+											echo	"<li class='col-lg-3 col-sm-4 col-xs-6'>";
+											echo "<video src='logica/".$fila["videoPublicacion"]."' alt='".$fila['videoPublicacion']."' controls poster='img/logo.png' width='400' height='240' border: 2px solid black;>";
+											echo "</video>";
+											echo	"</li>";
+											
+										}
+									echo "</ul>";
+								echo "</div>";
+							echo "</li>";
+							
+							switch($idTipo){
+								case 1:
+									$tipoMeGusta = "¡Guau!";
+									$tipoNoMeGusta = "No guau";
+								break;
+								case 2:
+									$tipoMeGusta = "¡Miau!";
+									$tipoNoMeGusta = "No miau";
+								break;
+								case 3:
+									$tipoMeGusta = "¡Pio!";
+									$tipoNoMeGusta = "No pio";
+								break;
+								default:
+									$tipoMeGusta = "¡Me gusta!";
+									$tipoNoMeGusta = "No me gusta";
+								break;
+							}							
+							echo "	<div id='publicacion".$fila["idPublicacion"]."' class='form-group botones'>
+										<input id='meGusta".$fila["idPublicacion"]."' class='btn btn-primary boton' type='button' value='".$tipoMeGusta."' onclick='meGusta(".$fila["idPublicacion"].",".$idUsuario.",".$idMascota.")'>
+										</input>
+										<input id='noMeGusta".$fila["idPublicacion"]."' class='btn btn-primary boton' type='button' value='".$tipoNoMeGusta."' onclick='noMeGusta(".$fila["idPublicacion"].",".$idUsuario.",".$idMascota.")'>																		
+										</input>
+									</div>";
+							echo "------------------------------------------------------------------------------------------------------------------------------";							
+						}
+						$queryTieneMgONo="select * from likepublicacion where idusuario='$idUsuario' and idmascota='$idMascota'";
+						$resultado =  $database->ejecutarQuery($queryTieneMgONo);
+						
+						if ($resultado->num_rows>0)
+						{
+							while($fila = $resultado->fetch_assoc())   
+							{
+								if($fila["like"] == 1)
+								{
+									echo "	<script type='text/javascript'>
+												$('#noMeGusta".$fila["idPublicacion"]."').hide();
+												$('#meGusta".$fila["idPublicacion"]."').prop('disabled', true);
+											</script>";
+								}
+								else if($fila["like"] == 0)
+								{
+									echo "	<script type='text/javascript'>
+												$('#meGusta".$fila["idPublicacion"]."').hide();
+												$('#noMeGusta".$fila["idPublicacion"]."').prop('disabled', true);
+											</script>";
+								}
+								echo "<script type='text/javascript'>
+										$('#publicacion".$fila["idPublicacion"]."').after('<textarea id=\"comentario\" rows=\"4\" cols=\"50\" maxlength=\"200\"></textarea><br>');
+									</script>";
+							}
+						}
+					}
+					else
+					{
+						echo "<h4>Esta mascota no ha hecho ninguna publicacion aun</h4>";
+					}
 					echo "</ul>";
-								?>
-
-				
-			      
+				?>							    
 			    </form>
 
 		      	<!-- fin PUBLICACIÓN -->
@@ -255,16 +238,39 @@
 <?php include("includes\pie.php"); ?>
 
 <script>
-function myFunction(){
-	alert("AAAAAAAAAA");
-	
+function meGusta(idPublicacion, idUsuario, idMascota){
+	$("#noMeGusta"+idPublicacion+"").hide();
+	mostrarTextAreaDeComentario(idPublicacion);
 	$.ajax({
-		type: "POST",
-		url: "exportarPDF.php",
-		data: {}
-	}).done(function( msg ) {
-		alert( "Data Saved: " + msg );
-		$("#prueba").html(msg);
+	  type: "POST",
+	  url: "logica/publicacionLike.php",
+	  data: {
+			idPublicacion: idPublicacion,
+			idUsuario: idUsuario,
+			like: 1,
+			comentario: "",
+			idMascota: idMascota
+		}
 	});
+}
+
+function noMeGusta(idPublicacion, idUsuario, idMascota){
+	$("#meGusta"+idPublicacion+"").hide();
+	mostrarTextAreaDeComentario(idPublicacion);
+	$.ajax({
+	  type: "POST",
+	  url: "logica/publicacionLike.php",
+	  data: {
+			idPublicacion: idPublicacion,
+			idUsuario: idUsuario,
+			like: 0,
+			comentario: "",
+			idMascota: idMascota
+		}
+	});
+}
+
+function mostrarTextAreaDeComentario(idPublicacion){
+	$("#publicacion"+idPublicacion+"").after("<textarea id='comentario' rows='4' cols='50' maxlength='200'></textarea><br>");
 }
 </script>

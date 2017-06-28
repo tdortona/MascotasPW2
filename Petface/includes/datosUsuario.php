@@ -8,7 +8,7 @@
   $database = new BaseDeDatos();
     
   
-  $queryDatosUsuario= "select usuario.nombre as nombreUsuario, usuario.imagen as imagenUsuario,  usuario.fechaNacimiento as fechaNacimientoUsuario, usuario.sexo as sexoUsuario from usuario where usuario.mail= '$mail' ";
+  $queryDatosUsuario= "select usuario.nombre as nombreUsuario, usuario.imagen as imagenUsuario,  usuario.fechaNacimiento as fechaNacimientoUsuario, usuario.sexo as sexoUsuario, usuario.id as idUsuario from usuario where usuario.mail= '$mail' ";
 
   $resultado =  $database->ejecutarQuery($queryDatosUsuario) ;
 
@@ -20,6 +20,7 @@
       $imagenUsuario=$fila["imagenUsuario"];
       $fechaNacimientoUsuario=$fila["fechaNacimientoUsuario"];
       $sexoUsuario=$fila["sexoUsuario"];
+	  $idUsuario=$fila["idUsuario"];
     }
   }
         
