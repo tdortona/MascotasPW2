@@ -1,4 +1,23 @@
+#main-content{
+  font-size: 18px;
+}
 
+/*GEOLOCALIZACIÓN*/
+#mapa {
+ 
+        width: 620px;
+        height: 400px;
+ 
+      }
+
+
+
+.gmnoprint a, .gmnoprint span, .gm-style-cc {
+    display:none;
+}
+.gmnoprint div {
+    background:none !important;
+}
 
 /*MENU VERTICAL*/
 

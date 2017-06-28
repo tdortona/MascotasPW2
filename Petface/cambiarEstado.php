@@ -4,7 +4,7 @@
   include_once("logica/clases/Usuario.php");
 ?>
 <?php
-$nombreMascota=$_GET["nombreMascota"];
+
 $id=$_GET["id"];
 if ($id!="1" and $id!="2" and $id!="3" and $id!="4")
 {
@@ -62,7 +62,7 @@ switch ($id) {
 ?>
 
 </br>
-<?php echo "<form action='logica/confirm_estado.php?id=".$id."&idMascota=".$idMascota."' method='POST'>" ?>;
+<?php echo "<form action='logica/confirm_estado.php?id=".$id."&idMascota=".$idMascota."' method='POST'>"; ?>
     <button type='submit' class='btn btn-primary'><span class='glyphicon glyphicon glyphicon-ok'></span> Confirmar</button>
 </form>
 	</section>

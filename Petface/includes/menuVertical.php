@@ -102,7 +102,7 @@
 						       </ul>
 				     		</li>
 
-					     <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Grupos <span class="caret"></span></a>
+					     <!--li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Grupos <span class="caret"></span></a>
 					       
 					       <ul class="dropdown-menu dropup" role="menu" aria-labelledby="dLabel">
 					        <li><a href="#">Grupo 1</a></li>
@@ -111,13 +111,14 @@
 					        <li class="divider"></li>
 					        <li><a href="#">Sub Menu4</a></li>
 					        <li><a href="#">Sub Menu5</a></li>
-					       </ul>
+					       </ul-->
 					     </li>
 				    	 <li><a href="amigos.php">Mascotas que sigo</a></li>
-					     <li><a href="misMascotaEnAdopcion.php">Adopción</a></li>
-					     <li><a href="#">Solos & Solas</a></li>
-					     <li><a href="#">Cachorros</a></li>
-					     <li><a href="#">Mascotas Perdidas</a></li>
+					     <li><a href="misMascotasEnAdopcion.php">Adopción</a></li>
+					     <li><a href="citas.php">Solos & Solas</a></li>
+					     <!-- falta -->
+					     <!--<li><a href="#">Cachorros</a></li>-->
+					     <li><a href="misMascotasPerdidas.php">Mascotas Perdidas</a></li>
 				    
 				    </ul>
 				    <hr>

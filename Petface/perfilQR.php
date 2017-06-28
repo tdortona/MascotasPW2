@@ -58,15 +58,38 @@
 	                        <div id="social-links" class="col-lg-12">
 	                            <div class="row">
 	                                <div class="col-sm-3 social-btn-holder">
-	                                    <button type="button" class="btn btn-primary">
+	                                    <!--button type="button" class="btn btn-primary">
 	                                    	<span class="glyphicon glyphicon-heart" aria-hidden="true"></span> Seguir
-	                                    </button>
+	                                    </button-->
+	                                    <?php 
+										     @$database = new BaseDeDatos();
+										     @$mail = $_COOKIE["mail"];
+										     $idMascota = $_GET["idMascota"];
+
+										     $queryEsMiMascotaONo="select mascota.id as id from mascota inner join usuario on mascota.idUsuario=usuario.id where usuario.mail='$mail' and mascota.id='$idMascota'";
+
+										    $resultado =  $database->ejecutarQuery($queryEsMiMascotaONo) ;
+
+											if ($resultado->num_rows>0)
+										    {	
+										    		include("includes\seguirPerfilQR.php"); 
+										    
+											}
+											else
+											{
+												echo'
+												<form action="index.php" method="POST">
+									            	<input type="submit" class="btn btn-primary" value="Seguir">
+									                </input>
+									            </form>';
+											}
+										?>
 	                                </div>
 	                                <div class="col-sm-6 social-btn-holder">
 	                                    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#qr_view"><i class="fa fa-search">Encontré a tu mascota</button>
 	                                </div>
 	                                <div class="col-sm-3 social-btn-holder">
-	                                    <button type="button" class="btn btn-primary"> Citas
+	                                    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#qr_view"><i class="fa fa-search"> Citas</button>
 	                                    	<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
 	                                	</button>
 	                                </div>
@@ -140,6 +163,8 @@
 		        </div>
 		    </div>
 		</div>
+
+
 			
 	<br><br><br>
 	

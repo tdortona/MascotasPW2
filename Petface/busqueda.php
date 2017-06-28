@@ -147,7 +147,7 @@
 			if ($busqueda!="")
 			{
 				//query de busqueda, busca coincidencias por nombre buscando lo que se escribio tanto al principio, final y dentro de los nombres. Solo se buscan las mascotas que no son del usuario activo
-				$queryResultadosDeBusquedaPorNombres="select mascota.nombre as mascotaNombre, mascota.id as mascotaId, mascota.imagen as mascotaImagen, raza.raza as mascotaRaza, tipo.tipo as mascotaTipo, mascota.sexo as mascotaSexo, mascota.fechaNacimiento as mascotaFechaNacimiento from mascota inner join raza on mascota.idRaza=raza.id inner join tipo on mascota.idTipo=tipo.id inner join usuario on mascota.idUsuario=usuario.id where usuario.mail!='".$mail."' and  mascota.nombre like '%".$busqueda."%' ";
+				$queryResultadosDeBusquedaPorNombres="select mascota.nombre as mascotaNombre, mascota.id as mascotaId, mascota.imagen as mascotaImagen, raza.raza as mascotaRaza, tipo.tipo as mascotaTipo, mascota.sexo as mascotaSexo, mascota.fechaNacimiento as mascotaFechaNacimiento,CAST((3959 *acos(cos(radians(".$latitud.")) * cos(radians(usuario.latitud)) * cos(radians(usuario.longitud) - radians(".$longitud.")) + sin(radians(".$latitud.")) * sin(radians(usuario.latitud )))) AS decimal(10, 3)) AS distance  from mascota inner join raza on mascota.idRaza=raza.id inner join tipo on mascota.idTipo=tipo.id inner join usuario on mascota.idUsuario=usuario.id where usuario.mail!='".$mail."' and  mascota.nombre like '%".$busqueda."%' ORDER BY distance LIMIT 0, 20; ";
 			}
 			//si la busqueda por palabra esta vacia, hace una busqueda de todas las mascotas menos las del usuario activo
 			else

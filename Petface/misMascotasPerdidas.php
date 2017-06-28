@@ -10,14 +10,14 @@
 
 <section id="main-content" >
 	<ul class="list-unstyled list-thumbs row">
-		<h3>Mis mascotas en adopción: </h3>
+		<h3>Mis mascotas perdidas: </h3>
 	</br>
 		<?php
 			
 		    $database = new BaseDeDatos();
 		    $mail = $_COOKIE["mail"];
 
-			$queryAdopcion2= "SELECT mascota.id as id, mascota.nombre as nombre, mascota.imagen as imagen, tipo.tipo as tipo, raza.raza as raza, mascota.fechaNacimiento as fechaNacimiento, mascota.edad as edad, mascota.sexo as sexo FROM mascota INNER JOIN usuario ON usuario.id = mascota.idUsuario INNER JOIN tipo ON mascota.idTipo=tipo.id INNER JOIN raza ON mascota.idRaza=raza.id where mascota.idEstado = '3' and usuario.mail='$mail'";
+			$queryAdopcion2= "SELECT mascota.id as id, mascota.nombre as nombre, mascota.imagen as imagen, tipo.tipo as tipo, raza.raza as raza, mascota.fechaNacimiento as fechaNacimiento, mascota.edad as edad, mascota.sexo as sexo FROM mascota INNER JOIN usuario ON usuario.id = mascota.idUsuario INNER JOIN tipo ON mascota.idTipo=tipo.id INNER JOIN raza ON mascota.idRaza=raza.id where mascota.idEstado = '2' and usuario.mail='$mail'";
 		    $resultado =  $database->ejecutarQuery($queryAdopcion2) ;
 
 				if ($resultado->num_rows>0)  

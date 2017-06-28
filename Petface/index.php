@@ -2,6 +2,9 @@
 <?php include("includes\cookie.php"); ?>
 <!-- cebezera con hojas de estilo y scripts -->
 <?php include("includes\cabecera.php"); ?>
+<?php require_once("vendor\autoload.php"); ?>
+<?php require_once("facebook\init.php"); ?>
+<?php require_once("google\init.php"); ?>
 
 </head>
 <body>
@@ -12,8 +15,6 @@
 				<br>
 				<!-- php que verifica si se intento ingresar a la cuenta y el login fallo, de ser asi devuelve el mensaje de que algo fallo -->
 				<?php 
-					//inicio de sesion
-					session_start();
 					//verifica si la la variable de sesion "noIngreso" esta seteada y tiene por valor 1, si tiene ambas cosas, muestra el mensaje de que fallo el ingreso
 					if (isset($_SESSION["noIngreso"]) and $_SESSION["noIngreso"]==1)
 					{
@@ -37,6 +38,15 @@
 				</form>
 				<br>
 				<p class="text-center">¿No tienes cuenta? Registrate haciendo <a href="registro.php">click aquí.</a></p>
+				<!-- facebook -->
+				<p class="text-center">
+					<a href="<?php echo $fbAuth->getAuthUrl(); ?>" class="btn btn-primary btn-social btn-facebook">
+						<i class="fa fa-facebook" aria-hidden="true"></i>
+					</a>
+					<!-- <a href="<?php //echo $googleAuth->getAuthUrl(); ?>" class="btn btn-danger btn-social btn-google">
+						<i class="fa fa-google" aria-hidden="true"></i>
+					</a> -->
+				</p>
 			</div>
 		</div>
 	</div>

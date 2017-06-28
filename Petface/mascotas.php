@@ -15,7 +15,7 @@
 	include_once("logica/clases/Usuario.php");
 ?>
 
-		<div class="container">
+		<section id="main-content" >
 		<!-- redirige al registro de mascota -->
 			<form action="mascotas_registro.php" method="get" enctype="multipart/form-data">
 				<input type="submit" class="btn btn-success" value="Registrar Mascota"></input>
@@ -30,7 +30,7 @@
 					$database = new BaseDeDatos();
 
 					//select para ver todas las mascotas del usuario activo recuperando de la tabla de de mascota anidada con la tabla usaurio (el idUsuario de mascota con el id de usuario), anidada con la tabla raza (el idRaza de mascota con id de raza) y anidada con la tabla tipo (el idTipo de mascota con el id de tipo) los campos id, nombre, imagen fechaNacimiento, sexo de mascota, la raza de raza y el tipo de tipo usando el mail del usuario actual guardado en la cookie en el where
-					$queryMascotasDelUsuarioActivo= "SELECT mascota.id as id, mascota.nombre as nombre, mascota.imagen as imagen, tipo.tipo as tipo, raza.raza as raza, mascota.fechaNacimiento as fechaNacimiento, mascota.sexo as sexo FROM mascota INNER JOIN usuario ON mascota.idUsuario=usuario.id INNER JOIN tipo ON mascota.idTipo=tipo.id INNER JOIN raza ON mascota.idRaza=raza.id where usuario.mail= '$mail' ";
+					$queryMascotasDelUsuarioActivo= "SELECT mascota.id as id, mascota.nombre as nombre, mascota.imagen as imagen, tipo.tipo as tipo, raza.raza as raza, mascota.fechaNacimiento as fechaNacimiento, mascota.edad as edad, mascota.sexo as sexo FROM mascota INNER JOIN usuario ON mascota.idUsuario=usuario.id INNER JOIN tipo ON mascota.idTipo=tipo.id INNER JOIN raza ON mascota.idRaza=raza.id where usuario.mail= '$mail' ";
 
 					//resultados: se llama al metodo que realiza la query en la base de datos OJO solo se genera una variable, no se realiza todavia el metodo
 					$resultado =  $database->ejecutarQuery($queryMascotasDelUsuarioActivo) ;
@@ -57,13 +57,14 @@
 									{
 										echo "<strong>Sexo:</strong> Macho<br>\n";
 									}
-									echo "<strong>Nacio el:</strong> ".$row["fechaNacimiento"]."<br>\n";
+									echo "<strong>Nació el:</strong> ".$row["fechaNacimiento"]."<br>\n";
+									echo "<strong>Edad:</strong> ".$row["edad"]."<br>\n";
 									echo
 									'<form action="perfilMascota.php" method="GET" enctype="multipart/form-data">
 										<input type="hidden" name="nombreMascota" value="'.$row["id"].'">
 										<br>
 										<input type="submit" class="btn btn-primary" value="Ir al perfil"></input>
-									</form>'." \n";
+									</form>'." ";
 								echo "</a> \n";
 							echo "</li> \n";
 						}
@@ -76,7 +77,7 @@
 			</ul>
 			
 			
-		</div>
+		</section>
 	</main>
 
 <!-- pie de pagina -->	

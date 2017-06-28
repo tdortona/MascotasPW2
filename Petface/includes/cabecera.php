@@ -12,6 +12,7 @@
 		<link rel="stylesheet" href="css/jquery-ui.theme.min.css">
 		<link rel="stylesheet" href="css/petface.min.css">
 		<link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
 		<link href="https://fonts.googleapis.com/css?family=Shadows+Into+Light" rel="stylesheet">
 
 		<script src="js/angular.min.js"></script> 
@@ -20,6 +21,8 @@
 		<script src="js/bootstrap.min.js"></script>
 		<script src="js/bootbox.min.js"></script>
 		<script src="js/petface.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyApylwApXXXOCpr3LNzp2cXVougcQxqZq4&callback=loadMap"></script>
+    
 		<script>  
  var app = angular.module("myapp",[]);  
  app.controller("usercontroller", function($scope, $http){  
@@ -92,5 +95,9 @@ $(document).ready(function() {
     });
 })  
  
- </script>  
  
+ </script>  
+
+      
+
+      

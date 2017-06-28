@@ -65,7 +65,9 @@
 												echo "<li>Sexo:<b> Macho</b></li>";
 											}
 											//devuelve el valor de la variable fechaNacimeintoMascota que se encuentra en el include datosMascota.php
-											echo "<li>Nacio el: <b>".$fechaNacimientoMascota."</b></li>";
+											echo "<li>Nació el: <b>".$fechaNacimientoMascota."</b></li>";
+											echo "<li>Edad: <b>".$edad."</b></li>";
+											echo "<li>Estoy <b>".$nombreEstado."</b></li>";
 
 											$database = new BaseDeDatos();
 											$mail = $_COOKIE["mail"];
@@ -97,23 +99,23 @@
 								{
 									echo '<input type="hidden" id="idm" value="'.$idMascota.'"></input>';
 									echo'
-								<select id="estado_cambio">
-						<option  value="" selected="selected">
-						
-							-- Eliga una opción --
-						</option>
-						<option  value="1">
-						
-							En casa
-						</option>
-						<option  value="2">
-						
-							Perdido
-						</option>
-						<option  value="3">
-						
-							En adopción
-						</option>';
+									<select id="estado_cambio">
+									<option  value="" selected="selected">
+									
+										-- Elija una opción --
+									</option>
+									<option  value="1">
+									
+										En casa
+									</option>
+									<option  value="2">
+									
+										Perdido
+									</option>
+									<option  value="3">
+									
+										En adopción
+									</option>';
 						
 							if ($sexoMascota=="H")
 								{
@@ -138,6 +140,20 @@
 			<!-- CUERPO -->
 			
 			  <section id="main-content" >
+			  <!-- IMPRIMIR PERFIL EN PDF -->
+				  <div class="col-sm-10" >
+						<form action="exportarPDF.php"  method="post">
+							<input type="hidden" name="nombreMascota" value="<?php echo $nombreMascota; ?>">
+							<input type="hidden" name="owner" value="<?php echo $nombreUsuario2; ?>">
+							<input type="hidden" name="especie" value="<?php echo $tipo; ?>">
+							<input type="hidden" name="raza" value="<?php echo $raza; ?>">
+							<input type="hidden" name="sexo" value="<?php echo $sexoMascota; ?>">
+							<input type="hidden" name="fnac" value="<?php echo $fechaNacimientoMascota; ?>">
+							<input type="hidden" name="fotoMascota" value="logica/<?php echo $imagenMascota; ?>">
+							<input type="hidden" name="fotoUsuario" value="logica/<?php echo $imagenUsuario2; ?>">
+							<input class="btn btn-primary boton" type="submit" value="Exportar a PDF">
+						</form>
+				  </div>	
 			        
 
 			        <!-- PUBLICACIÓN -->
@@ -168,7 +184,7 @@
 					$database = new BaseDeDatos();
 					
 					//query para ver todas las publicaciones de la mascota de este perfil usando la tabla publicacion obteniendo el campo texto como texto y pathImagen como imagenPublicacion usando el id de la mascota definido en la variable idMascota del include datosMascota.php en el where ordenandolas por la fechaPublicacion de manera desendiente
-					$queryPublicacionesDelPerfil= "SELECT texto as texto, pathImagen as imagenPublicacion, pathVideo as videoPublicacion FROM publicacion where idMascota= '$idMascota' ORDER BY fechaPublicacion DESC";
+					$queryPublicacionesDelPerfil= "SELECT texto, pathImagen as imagenPublicacion, pathVideo as videoPublicacion, fechaPublicacion FROM publicacion where publicacion.idMascota= '$idMascota' ORDER BY fechaPublicacion DESC";
 
 					//resultados: se llama al metodo que realiza la query en la base de datos OJO solo se genera una variable, no se realiza todavia el metodo
 					$resultado =  $database->ejecutarQuery($queryPublicacionesDelPerfil) ;
@@ -198,6 +214,7 @@
 									echo "<ul class='list-unstyled list-thumbs row'>";
 											//se muestra el texto de la publicacion
 											echo "<p>".$fila["texto"]."</p>";
+											echo "<p>".$fila["fechaPublicacion"]."</p>";
 											//si el campo "imagenPublicacion" no tiene la ubicacion por defecto, muestra la imagen, si no, no lo hace
 											if ($fila["imagenPublicacion"]!="")
 											{	
@@ -233,13 +250,13 @@
 									                </button>
 									            </div>';										
 											
-											echo "------------------------------------------------------------------------------------------------------------------------------";
+											echo "---------------------------------------------------------------------------------------------";
 
 										}
 					}
 					else
 					{
-						echo "<h4>Esta mascota no ha hecho ninguna publicacion aun</h4>";
+						echo "<h4>Esta mascota no ha hecho ninguna publicación aún</h4>";
 					}
 					echo "</ul>";
 				?>

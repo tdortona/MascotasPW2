@@ -3,9 +3,11 @@
 	include_once("clases/BaseDeDatos.php");
 	include_once("clases/Usuario.php");
 
+	//GEOLOCALIZACIÓN
 	//se crea el objeto de base de datos que contiene la conexion y el metodo de ejecucion de querys
 	$database = new BaseDeDatos();
 
+	
 	//setea todas las variables con los valores que se le paso por el post
 	$nombre=$_POST["nombre"];
 	$mail=$_POST["mail"];
@@ -13,6 +15,10 @@
 	$rePassword=$_POST["confirmaPassword"];
 	$telefono=$_POST["telefono"];
 	$sexo=$_POST["sexo"];
+	$mensaje=0;
+	$ubicacion=$_POST["ubicacion"];
+	$latitud=$_POST["lat"];
+	$longitud=$_POST["lng"];
 	$fechaRegistro=date('Y-m-d');
 	//se recupera la el valor de la fecha de nacimiento, se cambia las / por - para que coincida con la base de datos y por ultimo se cambia el orden de los numeros para que coincidan con la base de datos
 	$fechaNacimiento=date('Y-m-d',strtotime( str_replace('/', '-', $_POST["fechaNacimiento"])));
@@ -48,6 +54,8 @@
     	$_SESSION["nombre"]=$nombre;
     	$_SESSION["sexo"]=$sexo;
     	$_SESSION["imagen"]=$_POST["imagen"];
+    	$_SESSION["direccion"]=$_GET["direccion"];
+    	$localizacion=$_POST["localizacion"];
     	$_SESSION["errorTipo"]="contraseña";
     	header("location:../registro.php");	
     }   
@@ -57,7 +65,7 @@
 
 	//la siguiente validacion es para comprobar que el mail no esta repetido
 	if ($estado==1)
-	{
+	{	
 		//resultados: se llama al metodo que realiza la query en la base de datos OJO solo se genera una variable, no se realiza todavia el metodo
 		$resultado =  $database->ejecutarQuery($query) ;
 
@@ -78,6 +86,8 @@
 				$_SESSION["fechaNacimiento"]=$_POST["fechaNacimiento"];
 				$_SESSION["nombre"]=$nombre;
 				$_SESSION["sexo"]=$sexo;
+				$_SESSION["direccion"]=$_GET["direccion"];
+				$localizacion=$_POST["localizacion"];
 				$_SESSION["imagen"]=$imagen;
 				$_SESSION["errorTipo"]="mail";
 				header("location:../registro.php");
@@ -91,16 +101,18 @@
 	{
 		 $password = md5($password);
         //query de insersion del nuevo usuario
-        $insert_query= "insert into usuario values ('','$mail','$password','$nombre','','$fechaNacimiento','$sexo','$imagen',$telefono,'$fechaRegistro','$mensaje')";
+        $insert_query= "insert into usuario values ('','$mail','$password','$nombre','$fechaNacimiento','$sexo','$imagen',$telefono,'$fechaRegistro','$mensaje','$ubicacion','$latitud','$longitud')";
 		//ejecuta el metodo que ejecuta la query
 		$database->ejecutarQuery($insert_query);
 		//inicia sesion para pasarle valores a la pagina correcto.php
 		session_start();
 		$_SESSION["nombre"]=$nombre;
 		$_SESSION["mail"]=$mail;
+		
 		//redirige a correcto.php
 		header("location:../correcto.php");
 	}
 
-		?>
+
+?>
 

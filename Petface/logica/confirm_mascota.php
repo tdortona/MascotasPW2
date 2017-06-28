@@ -32,9 +32,11 @@
 	$tipo=$_POST["tipo"];
 	$raza=$_POST["raza"];
 	$sexo=$_POST["sexo"];
+
 	$fechaRegistro=date('Y-m-d');
 	//se recupera la el valor de la fecha de nacimiento, se cambia las / por - para que coincida con la base de datos y por ultimo se cambia el orden de los numeros para que coincidan con la base de datos
 	$fechaNacimiento=date('Y-m-d',strtotime( str_replace('/', '-', $_POST["fechaNacimiento"])));
+
 
 	//variable para guardar el archivo 
 	$archivo=$_FILES['imagen']['tmp_name'];
@@ -47,11 +49,19 @@
 	//se guarda la ruta donde esta la imagen
 	$imagen="Imagen Mascota/".$nombreArchivo;
 
-	
-	
+	$database = new BaseDeDatos();
+	$queryEdad="SELECT TIMESTAMPDIFF(YEAR, '$fechaNacimiento', CURDATE()) as edad";
+
+	$resultado2 =  $database->ejecutarQuery($queryEdad) ;
+
+		//pasa por cada registro y lo muestra
+		while($row=$resultado2->fetch_assoc())
+	    {	
+			echo $edad=$row["edad"];
+		}
 
 	//query para agregar la mascota a la base de datos
-	$queryInsertMascota= "insert into mascota values ('','$idDueño','$nombre','$tipo','$raza','$sexo','$fechaNacimiento','','$imagen',1,'$fechaRegistro')";
+	$queryInsertMascota= "insert mascota values ('','$idDueño','$nombre','$tipo','$raza','$sexo','$fechaNacimiento','$edad','$imagen',1,'$fechaRegistro',0)";
 	//se ejecuta la query
 	$database->ejecutarQuery($queryInsertMascota) ;
 

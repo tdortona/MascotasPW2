@@ -38,6 +38,5 @@
   $database->ejecutarQuery($querySeguir) ;
 
   //redirige al perfil de la mascota  
-  header("location:../perfilMascota.php"."?nombreMascota=".$idMascota);
-
+  header('Location: ' . $_SERVER['HTTP_REFERER']);
 ?>

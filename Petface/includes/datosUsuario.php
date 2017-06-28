@@ -9,7 +9,7 @@
   $database = new BaseDeDatos();  
 
   //select para recuperar de la tabla usaurio los campos nombre, imagenUsuario, fechaNacimiento, sexo usando el valor de la variable mail en el where
-  $queryDatosUsuario= "select usuario.nombre as nombreUsuario, usuario.imagen as imagenUsuario,  usuario.fechaNacimiento as fechaNacimientoUsuario, usuario.sexo as sexoUsuario from usuario where usuario.mail= '$mail' ";
+  $queryDatosUsuario= "select usuario.nombre as nombreUsuario, usuario.imagen as imagenUsuario, latitud, longitud, usuario.fechaNacimiento as fechaNacimientoUsuario, usuario.sexo as sexoUsuario from usuario where usuario.mail= '$mail' ";
 
   //resultados: se llama al metodo que realiza la query en la base de datos OJO solo se genera una variable, no se realiza todavia el metodo
   $resultado =  $database->ejecutarQuery($queryDatosUsuario) ;
@@ -25,6 +25,8 @@
       $imagenUsuario=$fila["imagenUsuario"];
       $fechaNacimientoUsuario=$fila["fechaNacimientoUsuario"];
       $sexoUsuario=$fila["sexoUsuario"];
+      $latitud=$fila["latitud"];
+      $longitud=$fila["longitud"];    
     }
   }
         

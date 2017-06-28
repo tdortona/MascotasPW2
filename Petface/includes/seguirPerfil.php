@@ -21,19 +21,28 @@
         echo'
         <form action="logica\confirm_dejarDeSeguir.php" method="POST">
             <input type="hidden" name="idMascota" value="'.$idMascota.'">
-        	<input type="submit" class="btn btn-danger" value="Dejar de seguir mascota"></input>
-        </form>	
+        	<input type="submit" class="btn btn-danger" value="Dejar de seguir"></input>
+        <a class="btn btn-success" href="enviarMensaje.php?idMascota='.$idMascota.'&nombreMascota='.$nombreMascota.'">Enviar mensaje</a>
+
         <br><br>';
     }
     else
     {
         //crea un formulario con metodo post donde hay un input oculto con el valor del id de la mascota y lo envia a la pagina confirm_seguir.php
-    	echo'
-        <form action="logica\confirm_seguir.php" method="POST">
-        	<input type="hidden" name="idMascota" value="'.$idMascota.'">
-        	<input type="submit" class="btn btn-primary" value="Seguir mascota"></input>
-        </form>	
-        <br><br>';
+    	if ($mail)
+        {
+            echo'
+            <form action="logica\confirm_seguir.php" method="POST">
+            	<input type="hidden" name="idMascota" value="'.$idMascota.'">
+            	<input type="submit" class="btn btn-primary" value="Seguir">
+                </input>
+            </form>	
+            <a class="btn btn-success" href="enviarMensaje.php?idMascota='.$idMascota.'&nombreMascota='.$nombreMascota.'">Enviar mensaje</a>
+            <br><br>';
+        }
+        else{
+            echo "nada";
+        }
     }
 
 

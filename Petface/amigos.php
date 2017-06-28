@@ -14,8 +14,10 @@
   include_once("logica/clases/Usuario.php");
 ?>
 
-		<div class="container">
+		<section id="main-content" >
 			<ul class="list-unstyled list-thumbs row">
+				<h3>Mascotas a las que sigo: </h3>
+				</br>
 				<?php
 				 	//se recupera el mail del usuario guardado en la cookie
 					$mail = $_COOKIE["mail"];
@@ -63,7 +65,7 @@
 					}
 				else
 				{
-					echo "<h4>Aun no sigues a ninguna mascota! te sugerimos ver las siguientes! </h4> \n";
+					echo "<h4>Aún no sigues a ninguna mascota! te sugerimos ver las siguientes! </h4> \n";
 										echo "<br> \n";
 										
 										//select: para ver sugerencias de mascotas para seguir recuperando nombre, id, imagen, fecha de nacimiento, sexo (de la tabla mascota), raza (de la tabla raza), tipo (de la tabla tipo) anidada con la tabla raza (mascota.idRaza=raza.id), la tabla tipo (mascota.idTipo=tipo.id) y la tabla usuario (mascota.idUsuario=usuario.id) usando en el where el mail del usuario para NO traer las mascotas del usuario ordenado de forma aleatoria con un total de 10 mascotas
@@ -118,7 +120,7 @@
 				}
 				?>
 			</ul>
-		</div>
+		</section>
 	</main>
 	
 <!-- pie de pagina -->
