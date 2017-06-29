@@ -205,6 +205,8 @@
 								{
 									echo "	<script type='text/javascript'>
 												$('#noMeGusta".$fila["idPublicacion"]."').hide();
+												$('#meGusta".$fila["idPublicacion"]."').removeClass('btn-primary boton');
+												$('#meGusta".$fila["idPublicacion"]."').addClass('btn-success');
 												$('#meGusta".$fila["idPublicacion"]."').prop('disabled', true);
 											</script>";
 								}
@@ -212,11 +214,13 @@
 								{
 									echo "	<script type='text/javascript'>
 												$('#meGusta".$fila["idPublicacion"]."').hide();
+												$('#noMeGusta".$fila["idPublicacion"]."').removeClass('btn-primary boton');
+												$('#noMeGusta".$fila["idPublicacion"]."').addClass('btn-danger');
 												$('#noMeGusta".$fila["idPublicacion"]."').prop('disabled', true);
 											</script>";
 								}
 								echo "<script type='text/javascript'>
-										$('#publicacion".$fila["idPublicacion"]."').after('<textarea id=\"comentario\" rows=\"4\" cols=\"50\" maxlength=\"200\"></textarea><br>');
+										$('#publicacion".$fila["idPublicacion"]."').after('<textarea id=\"comentario".$fila["idPublicacion"]."\" rows=\"4\" cols=\"50\" maxlength=\"200\" readonly>".$fila["comentario"]."</textarea><br>');
 									</script>";
 							}
 						}
@@ -240,8 +244,10 @@
 <script>
 function meGusta(idPublicacion, idUsuario, idMascota){
 	$("#noMeGusta"+idPublicacion+"").hide();
+	$("#meGusta"+idPublicacion+"").removeClass("btn-primary boton");
+	$("#meGusta"+idPublicacion+"").addClass("btn-success");
 	$("#meGusta"+idPublicacion+"").prop('disabled', true);
-	mostrarTextAreaDeComentario(idPublicacion);
+	mostrarTextAreaDeComentario(idPublicacion, idUsuario, idMascota);
 	$.ajax({
 	  type: "POST",
 	  url: "logica/publicacionLike.php",
@@ -257,8 +263,10 @@ function meGusta(idPublicacion, idUsuario, idMascota){
 
 function noMeGusta(idPublicacion, idUsuario, idMascota){
 	$("#meGusta"+idPublicacion+"").hide();
+	$("#noMeGusta"+idPublicacion+"").removeClass("btn-primary boton");
+	$("#noMeGusta"+idPublicacion+"").addClass("btn-danger");
 	$("#noMeGusta"+idPublicacion+"").prop('disabled', true);
-	mostrarTextAreaDeComentario(idPublicacion);
+	mostrarTextAreaDeComentario(idPublicacion, idUsuario, idMascota);
 	$.ajax({
 	  type: "POST",
 	  url: "logica/publicacionLike.php",
@@ -272,7 +280,23 @@ function noMeGusta(idPublicacion, idUsuario, idMascota){
 	});
 }
 
-function mostrarTextAreaDeComentario(idPublicacion){
-	$("#publicacion"+idPublicacion+"").after("<textarea id='comentario' rows='4' cols='50' maxlength='200'></textarea><br>");
+function mostrarTextAreaDeComentario(idPublicacion, idUsuario, idMascota){
+	$("#publicacion"+idPublicacion+"").after("<textarea id='comentario"+idPublicacion+"' rows='4' cols='50' maxlength='200'></textarea><br>");
+	$("#comentario"+idPublicacion+"").after("<br><input id='btnComentar"+idPublicacion+"' class='btn btn-primary boton' type='button' value='Guardar Comentario' onclick='guardarComentario("+idPublicacion+","+idUsuario+","+idMascota+")'>");
+}
+
+function guardarComentario(idPublicacion, idUsuario, idMascota){
+	$("#btnComentar"+idPublicacion+"").hide();
+	$("#comentario"+idPublicacion+"").prop('readonly', true);
+	$.ajax({
+	  type: "POST",
+	  url: "logica/guardarComentario.php",
+	  data: {
+			idPublicacion: idPublicacion,
+			idUsuario: idUsuario,			
+			comentario: $("#comentario"+idPublicacion+"").val(),
+			idMascota: idMascota
+		}
+	});
 }
 </script>
