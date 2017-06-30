@@ -112,7 +112,7 @@
 				    $queryEsMiMascotaONo="select * from mascota inner join usuario on mascota.idUsuario=usuario.id where usuario.mail='$mail' and mascota.id='$idMascota'";
 
 				    $resultado =  $database->ejecutarQuery($queryEsMiMascotaONo) ;
-
+					$esMiMascota = $resultado->num_rows>0;
 					if ($resultado->num_rows>0)
 				    {
 				    	include("includes\publicacion.php"); 
@@ -185,13 +185,15 @@
 									$tipoMeGusta = "¡Me gusta!";
 									$tipoNoMeGusta = "No me gusta";
 								break;
-							}							
-							echo "	<div id='publicacion".$fila["idPublicacion"]."' class='form-group botones'>
-										<input id='meGusta".$fila["idPublicacion"]."' class='btn btn-primary boton' type='button' value='".$tipoMeGusta."' onclick='meGusta(".$fila["idPublicacion"].",".$idUsuario.",".$idMascota.")'>
-										</input>
-										<input id='noMeGusta".$fila["idPublicacion"]."' class='btn btn-primary boton' type='button' value='".$tipoNoMeGusta."' onclick='noMeGusta(".$fila["idPublicacion"].",".$idUsuario.",".$idMascota.")'>																		
-										</input>
-									</div>";
+							}
+							if(!$esMiMascota){
+								echo "	<div id='publicacion".$fila["idPublicacion"]."' class='form-group botones'>
+											<input id='meGusta".$fila["idPublicacion"]."' class='btn btn-primary boton' type='button' value='".$tipoMeGusta."' onclick='meGusta(".$fila["idPublicacion"].",".$idUsuario.",".$idMascota.")'>
+											</input>
+											<input id='noMeGusta".$fila["idPublicacion"]."' class='btn btn-primary boton' type='button' value='".$tipoNoMeGusta."' onclick='noMeGusta(".$fila["idPublicacion"].",".$idUsuario.",".$idMascota.")'>																		
+											</input>
+										</div>";
+							}
 							echo "------------------------------------------------------------------------------------------------------------------------------";
 						}
 						$queryTieneMgONo="select * from likepublicacion where idusuario='$idUsuario' and idmascota='$idMascota'";

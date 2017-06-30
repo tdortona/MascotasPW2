@@ -4,27 +4,27 @@
 	
 	$database = new BaseDeDatos();
 	$querySumLikes= "SELECT `likepublicacion`.`idMascota` as mascotaId,
-							SUM(`likepublicacion`.`like`) as likeCount,
-							`mascota`.`nombre` as nombreMascota,
-							`mascota`.`idTipo` as tipoMascota
+							COUNT(*) as commentCount,
+							`mascota`.`nombre` as nombreMascota
 					FROM `likepublicacion`
 					INNER JOIN `mascota`
 					ON `likepublicacion`.`idMascota` = `mascota`.`id`
+					WHERE `likepublicacion`.`comentario` <> null OR `likepublicacion`.`comentario` <> ''
 					GROUP BY `likepublicacion`.`idMascota`
-					ORDER BY likeCount DESC
+					ORDER BY commentCount DESC
 					LIMIT 3";
 	$resultado =  $database->ejecutarQuery($querySumLikes);
 	
 	$string = '{
 				  "cols": [
 						{"id":"","label":"NombreMascota","pattern":"","type":"string"},
-						{"id":"","label":"CantidadLikes","pattern":"","type":"number"}
+						{"id":"","label":"CantidadComentarios","pattern":"","type":"number"}
 					  ],
 				  "rows": [';
 	
 	while($fila = $resultado->fetch_assoc()) 
 	{		
-		$string = $string.'{"c":[{"v":"'.$fila['nombreMascota'].'","f":null},{"v":'.$fila['likeCount'].',"f":null}]},';
+		$string = $string.'{"c":[{"v":"'.$fila['nombreMascota'].'","f":null},{"v":'.$fila['commentCount'].',"f":null}]},';
 	}
 	$string = substr($string, 0, -1);
 	$string = $string.']}';
