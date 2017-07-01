@@ -35,6 +35,7 @@
       			</li>
 				<li><a href="home.php">Inicio</a></li>
 				<li><a href="mascotas.php">Mis mascotas</a></li>
+				<li><a href="valoraciones.php">Valoracion</a></li>
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> <?php /* nombre del usuario definido en el include datosUsuario.php */ echo $nombreUsuario ?> <span class="caret"></span></a>
 					<ul class="dropdown-menu">

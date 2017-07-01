@@ -8,8 +8,8 @@
   //se crea el objeto de base de datos que contiene la conexion y el metodo de ejecucion de querys
   $database = new BaseDeDatos();  
 
-  //select para recuperar de la tabla usaurio los campos nombre, imagenUsuario, fechaNacimiento, sexo usando el valor de la variable mail en el where
-  $queryDatosUsuario= "select usuario.nombre as nombreUsuario, usuario.imagen as imagenUsuario, latitud, longitud, usuario.fechaNacimiento as fechaNacimientoUsuario, usuario.sexo as sexoUsuario from usuario where usuario.mail= '$mail' ";
+//select para recuperar de la tabla usaurio los campos nombre, imagenUsuario, fechaNacimiento, sexo usando el valor de la variable mail en el where
+  $queryDatosUsuario= "select usuario.nombre as nombreUsuario, usuario.imagen as imagenUsuario, latitud, longitud, usuario.fechaNacimiento as fechaNacimientoUsuario, usuario.sexo as sexoUsuario, usuario.id as idUsuario from usuario where usuario.mail= '$mail' ";
 
   //resultados: se llama al metodo que realiza la query en la base de datos OJO solo se genera una variable, no se realiza todavia el metodo
   $resultado =  $database->ejecutarQuery($queryDatosUsuario) ;
@@ -27,6 +27,7 @@
       $sexoUsuario=$fila["sexoUsuario"];
       $latitud=$fila["latitud"];
       $longitud=$fila["longitud"];    
+	  $idUsuario=$fila["idUsuario"];
     }
   }
         

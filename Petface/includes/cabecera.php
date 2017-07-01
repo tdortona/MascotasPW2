@@ -1,11 +1,9 @@
 <!DOCTYPE html>
 <html lang="es">
-	<head>
-		<meta charset="UTF-8">
-		<title>PetFace - TP PWII</title>
-		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-		
-		<link rel="icon" href="img/petface_icon.ico"/>
+<head>
+	<meta charset="UTF-8">
+	<title>PetFace - TP PWII</title>
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 
 		<link rel="stylesheet" href="css/bootstrap.min.css">
 		<link rel="stylesheet" href="css/jquery-ui.min.css">
@@ -43,15 +41,7 @@
            });  
       }
 
-      $scope.load_mascota = function(){  
-           $http.get("logica\\load_mascota.php")  
-           .success(function(data){ 
-            	$scope.mascota = $scope.option="0";
-                $scope.mascotas = data;
-                  
-           })  
-      }   
- });  
+	<link href="https://fonts.googleapis.com/css?family=Shadows+Into+Light" rel="stylesheet">
 
 
 
@@ -69,16 +59,16 @@ $('#estado_cambio').on('change',function(){
 
 /* PONER EN ADOPCIÓN */
 
-$(document).ready(function() {
-   
-    $().ajaxStart(function() {
-        $('#loading').show();
-        $('#resultado').hide();
-    }).ajaxStop(function() {
-        $('#loading').hide();
-        $('#resultado').fadeIn('slow');
-    });
+				})  
+			}  
+			$scope.load_raza = function(){  
+				$http.post("logica\\load_raza.php", {'id':$scope.tipo})  
+				.success(function(data){ 
+					$scope.raza = $scope.option="";
+					$scope.razas = data;
 
+				});  
+			}
 
     $('#enviar').change(function() {
   // Enviamos el formulario usando AJAX

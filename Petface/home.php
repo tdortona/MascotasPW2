@@ -13,9 +13,8 @@
   include_once("logica/clases/BaseDeDatos.php");
   include_once("logica/clases/Usuario.php");
 ?>
-
 		<!-- CUERPO -->
-
+			
 		  <section id="main-content" >
 
 	        <!-- PUBLICACIONES AMIGOS -->
@@ -144,3 +143,4 @@
 <!-- pie de pagina -->
 <?php include("includes\pie.php"); ?>
 	
+<script src="js/comentarYMeGusta.js"></script>
