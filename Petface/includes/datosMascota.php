@@ -34,8 +34,7 @@
       $sexoMascota=$row["sexoMascota"];
       $nombreUsuario2=$row["nombreUsuario"];
       $imagenUsuario2=$row["imagenUsuario"];
-      $nombreEstado=$row["nombreEstado"];
-
+      $nombreEstado=$row["nombreEstado"];	  
     }
   }
         

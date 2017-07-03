@@ -42,7 +42,7 @@ $qrImagen=file_get_contents($qrPath);
 
 <img src="<?php echo $qrPath; ?>" />
 
-<p>Éste es el código QR de <b><?php echo $nombreMascota; ?></b><br>Para guardarlo puede hacer lo siguiente:<br>1-Click secundario (por lo general el botón derecho) sobre el código QR<br>2-Click sobre "Guardar imagen como..."<br>3-Elegir la carpeta donde se guardará la imagen y si desea puede cambiarle el nombre<br>5-Edite e imprima la imagen con su programa preferido</p>
+<p>Éste es el código QR de <b><?php echo $nombreMascota; ?></b><br>Para guardarlo puede hacer lo siguiente:<br>1-Click secundario (por lo general el botón derecho) sobre el código QR<br>2-Click sobre "Guardar imagen como..."<br>3-Elegir la carpeta donde se guardará la imagen y si desea puede cambiarle el nombre<br>4-Edite e imprima la imagen con su programa preferido</p>
 
 <form action="perfilMascota.php" method="GET" enctype="multipart/form-data">
 										<input type="hidden" name="nombreMascota" value="<?php echo $idMascota; ?>">

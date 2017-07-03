@@ -38,6 +38,7 @@ $html='
 	<p><b>Raza:</b> '.$_POST['raza'].'</p>
 	<p><b>Sexo:</b> '.$sexo.'</p>
 	<p><b>Fecha de nacimiento:</b> '.$_POST['fnac'].'</p>
+	<p>Esta mascota se encuentra <b>'.$_POST['estado'].'</b></p>
 	<div class="well">
 		<p>
 		<div class="imagen">

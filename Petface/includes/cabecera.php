@@ -86,8 +86,4 @@ $('#estado_cambio').on('change',function(){
 })  
  
  
- </script>  
-
-      
-
-      
+ </script>

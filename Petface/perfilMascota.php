@@ -88,11 +88,7 @@
 			                						</button>
 			                						</form>";
 											}
-					
 
-											
-											
-									
 								echo '</ul>';
 
 								if ($resultado->num_rows>0) 
@@ -151,6 +147,7 @@
 							<input type="hidden" name="fnac" value="<?php echo $fechaNacimientoMascota; ?>">
 							<input type="hidden" name="fotoMascota" value="logica/<?php echo $imagenMascota; ?>">
 							<input type="hidden" name="fotoUsuario" value="logica/<?php echo $imagenUsuario2; ?>">
+							<input type="hidden" name="estado" value="<?php echo $nombreEstado; ?>">
 							<input class="btn btn-primary boton" type="submit" value="Exportar a PDF">
 						</form>
 				  </div>	
@@ -159,13 +156,13 @@
 			        <!-- PUBLICACIÓN -->
 
 			     <?php 
-				    $database = new BaseDeDatos();
-				    $mail = $_COOKIE["mail"];
+				     $database = new BaseDeDatos();
+				     $mail = $_COOKIE["mail"];
 
-				    $queryEsMiMascotaONo="select * from mascota inner join usuario on mascota.idUsuario=usuario.id where usuario.mail='$mail' and mascota.id='$idMascota'";
-
-				    $resultado =  $database->ejecutarQuery($queryEsMiMascotaONo) ;
+				     $queryEsMiMascotaONo="select * from mascota inner join usuario on mascota.idUsuario=usuario.id where usuario.mail='$mail' and mascota.id='$idMascota'";
 					$esMiMascota = $resultado->num_rows>0;
+				    $resultado =  $database->ejecutarQuery($queryEsMiMascotaONo) ;
+
 					if ($resultado->num_rows>0)
 				    {
 				    	include("includes\publicacion.php"); 
@@ -184,7 +181,7 @@
 					$database = new BaseDeDatos();
 					
 					//query para ver todas las publicaciones de la mascota de este perfil usando la tabla publicacion obteniendo el campo texto como texto y pathImagen como imagenPublicacion usando el id de la mascota definido en la variable idMascota del include datosMascota.php en el where ordenandolas por la fechaPublicacion de manera desendiente
-					$queryPublicacionesDelPerfil= "SELECT texto, pathImagen as imagenPublicacion, pathVideo as videoPublicacion, fechaPublicacion FROM publicacion where publicacion.idMascota= '$idMascota' ORDER BY fechaPublicacion DESC";
+					$queryPublicacionesDelPerfil= "SELECT texto, pathImagen as imagenPublicacion, pathVideo as videoPublicacion, id as idPublicacion, fechaPublicacion FROM publicacion where publicacion.idMascota= '$idMascota' ORDER BY fechaPublicacion DESC";
 
 					//resultados: se llama al metodo que realiza la query en la base de datos OJO solo se genera una variable, no se realiza todavia el metodo
 					$resultado =  $database->ejecutarQuery($queryPublicacionesDelPerfil) ;
@@ -238,86 +235,76 @@
 
 											echo "</li>";
 											
-											echo	"<li class='col-lg-3 col-sm-4 col-xs-6'>";
-											echo "<video src='logica/".$fila["videoPublicacion"]."' alt='".$fila['videoPublicacion']."' controls poster='img/logo.png' width='400' height='240' border: 2px solid black;>";
-											echo "</video>";
-											echo	"</li>";
+											switch($tipo){
+												case "perro":												
+													$tipoMeGusta = "¡Guau!";
+													$tipoNoMeGusta = "No guau";
+												break;
+												case "gato":												
+													$tipoMeGusta = "¡Miau!";
+													$tipoNoMeGusta = "No miau";
+												break;
+												case "pajaro":												
+													$tipoMeGusta = "¡Pio!";
+													$tipoNoMeGusta = "No pio";
+												break;
+												default:
+													$tipoMeGusta = "¡Me gusta!";
+													$tipoNoMeGusta = "No me gusta";
+												break;
+											}
+											if(!$esMiMascota){
+												echo "	<div id='publicacion".$fila["idPublicacion"]."' class='form-group botones'>
+															<input id='meGusta".$fila["idPublicacion"]."' class='btn btn-primary boton' type='button' value='".$tipoMeGusta."' onclick='meGusta(".$fila["idPublicacion"].",".$idUsuario.",".$idMascota.")'>
+															</input>
+															<input id='noMeGusta".$fila["idPublicacion"]."' class='btn btn-primary boton' type='button' value='".$tipoNoMeGusta."' onclick='noMeGusta(".$fila["idPublicacion"].",".$idUsuario.",".$idMascota.")'>																		
+															</input>
+														</div>";
+											}										
+											
+											
 											
 											echo "---------------------------------------------------------------------------------------------";
 
 										}
-									echo "</ul>";
-								echo "</div>";
-							echo "</li>";
-							
-							switch($idTipo){
-								case 1:
-									$tipoMeGusta = "¡Guau!";
-									$tipoNoMeGusta = "No guau";
-								break;
-								case 2:
-									$tipoMeGusta = "¡Miau!";
-									$tipoNoMeGusta = "No miau";
-								break;
-								case 3:
-									$tipoMeGusta = "¡Pio!";
-									$tipoNoMeGusta = "No pio";
-								break;
-								default:
-									$tipoMeGusta = "¡Me gusta!";
-									$tipoNoMeGusta = "No me gusta";
-								break;
-							}
-							if(!$esMiMascota){
-								echo "	<div id='publicacion".$fila["idPublicacion"]."' class='form-group botones'>
-											<input id='meGusta".$fila["idPublicacion"]."' class='btn btn-primary boton' type='button' value='".$tipoMeGusta."' onclick='meGusta(".$fila["idPublicacion"].",".$idUsuario.",".$idMascota.")'>
-											</input>
-											<input id='noMeGusta".$fila["idPublicacion"]."' class='btn btn-primary boton' type='button' value='".$tipoNoMeGusta."' onclick='noMeGusta(".$fila["idPublicacion"].",".$idUsuario.",".$idMascota.")'>																		
-											</input>
-										</div>";
-							}
-							echo "------------------------------------------------------------------------------------------------------------------------------";
-						}
-						$queryTieneMgONo="select * from likepublicacion where idusuario='$idUsuario' and idmascota='$idMascota'";
-						$resultado = $database->ejecutarQuery($queryTieneMgONo);
-						
-						if ($resultado->num_rows>0)
-						{
-							while($fila = $resultado->fetch_assoc())   
-							{
-								if($fila["like"] == 1)
-								{
-									echo "	<script type='text/javascript'>
-												$('#noMeGusta".$fila["idPublicacion"]."').hide();
-												$('#meGusta".$fila["idPublicacion"]."').removeClass('btn-primary boton');
-												$('#meGusta".$fila["idPublicacion"]."').addClass('btn-success');
-												$('#meGusta".$fila["idPublicacion"]."').prop('disabled', true);
-											</script>";
-								}
-								else if($fila["like"] == 0)
-								{
-									echo "	<script type='text/javascript'>
-												$('#meGusta".$fila["idPublicacion"]."').hide();
-												$('#noMeGusta".$fila["idPublicacion"]."').removeClass('btn-primary boton');
-												$('#noMeGusta".$fila["idPublicacion"]."').addClass('btn-danger');
-												$('#noMeGusta".$fila["idPublicacion"]."').prop('disabled', true);
-											</script>";
-								}
-								echo "<script type='text/javascript'>
-										$('#publicacion".$fila["idPublicacion"]."').after('<textarea id=\"comentario".$fila["idPublicacion"]."\" rows=\"4\" cols=\"50\" maxlength=\"200\" readonly>".$fila["comentario"]."</textarea><br>');
-									</script>";
-							}
-						}
+										$queryTieneMgONo="select * from likepublicacion where idusuario='$idUsuario' and idmascota='$idMascota'";
+										$resultado = $database->ejecutarQuery($queryTieneMgONo);
+										
+										if ($resultado->num_rows>0)
+										{
+											while($fila = $resultado->fetch_assoc())   
+											{
+												if($fila["like"] == 1)
+												{
+													echo "	<script type='text/javascript'>
+																$('#noMeGusta".$fila["idPublicacion"]."').hide();
+																$('#meGusta".$fila["idPublicacion"]."').removeClass('btn-primary boton');
+																$('#meGusta".$fila["idPublicacion"]."').addClass('btn-success');
+																$('#meGusta".$fila["idPublicacion"]."').prop('disabled', true);
+															</script>";
+												}
+												else if($fila["like"] == 0)
+												{
+													echo "	<script type='text/javascript'>
+																$('#meGusta".$fila["idPublicacion"]."').hide();
+																$('#noMeGusta".$fila["idPublicacion"]."').removeClass('btn-primary boton');
+																$('#noMeGusta".$fila["idPublicacion"]."').addClass('btn-danger');
+																$('#noMeGusta".$fila["idPublicacion"]."').prop('disabled', true);
+															</script>";
+												}
+												echo "<script type='text/javascript'>
+														$('#publicacion".$fila["idPublicacion"]."').after('<textarea id=\"comentario".$fila["idPublicacion"]."\" rows=\"4\" cols=\"50\" maxlength=\"200\" readonly>".$fila["comentario"]."</textarea><br>');
+													</script>";
+											}
+										}
 					}
 					else
 					{
-						echo "<h4>Esta mascota no ha hecho ninguna publicacion aun</h4>";
+						echo "<h4>Esta mascota no ha hecho ninguna publicación aún</h4>";
 					}
 					echo "</ul>";
 				?>
 
-				
-			      
 			    </form>
 
 		      	<!-- fin PUBLICACIÓN -->
@@ -328,5 +315,4 @@
 
 <!-- pie de pagina -->
 <?php include("includes\pie.php"); ?>
-
 <script src="js/comentarYMeGusta.js"></script>
